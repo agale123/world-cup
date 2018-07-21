@@ -1,7 +1,18 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
+<mat-toolbar color="primary">
+    <button mat-icon-button>
+        <mat-icon aria-label="Open menu">menu</mat-icon>
+    </button>
+    <h1 class="padding-left">World Cup Explorer</h1>
+</mat-toolbar>
+<nav mat-tab-nav-bar>
+    <ng-container *ngIf="activeLink | async; let active">
+        <a mat-tab-link
+            *ngFor="let routeLink of routeLinks"
+            [routerLink]="routeLink.link"
+            [active]="active === routeLink.link">
+            {{routeLink.label}}
+        </a>
+    </ng-container>
+</nav>
 
 <router-outlet></router-outlet>
