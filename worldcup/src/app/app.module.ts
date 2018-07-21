@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatButtonModule,
+    MatListModule,
     MatMenuModule,
     MatToolbarModule,
+    MatSidenavModule,
     MatIconModule,
     MatCardModule,
     MatTabsModule
@@ -23,14 +26,17 @@ import { ItineraryComponent } from './itinerary/itinerary.component';
         ItineraryComponent
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
         MatButtonModule,
-        MatMenuModule,
-        MatTabsModule,
-        MatToolbarModule,
+        MatCardModule,
         MatIconModule,
-        MatCardModule
+        MatListModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatTabsModule,
+        MatToolbarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,18 +1,37 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button>
-        <mat-icon aria-label="Open menu">menu</mat-icon>
-    </button>
-    <h1 class="padding-left">World Cup Explorer</h1>
-</mat-toolbar>
-<nav mat-tab-nav-bar>
-    <ng-container *ngIf="activeLink | async; let active">
-        <a mat-tab-link
-            *ngFor="let routeLink of routeLinks"
-            [routerLink]="routeLink.link"
-            [active]="active === routeLink.link">
-            {{routeLink.label}}
-        </a>
-    </ng-container>
-</nav>
-
-<router-outlet></router-outlet>
+<div class="container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button
+            *ngIf="!useTabNavigation"
+            (click)="sidenav.toggle()">
+            <mat-icon aria-label="Open menu">menu</mat-icon>
+        </button>
+        <h1 [class.padding-left]="!useTabNavigation">World Cup Explorer</h1>
+    </mat-toolbar>
+    <nav mat-tab-nav-bar
+        *ngIf="useTabNavigation">
+        <ng-container *ngIf="activeLink | async; let active">
+            <a mat-tab-link
+                *ngFor="let routeLink of routeLinks"
+                [routerLink]="routeLink.link"
+                [active]="active === routeLink.link">
+                {{routeLink.label}}
+            </a>
+        </ng-container>
+    </nav>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav
+            mode="over">
+            <mat-nav-list>
+                <a mat-list-item
+                    *ngFor="let routeLink of routeLinks"
+                    [routerLink]="routeLink.link"
+                    (click)="sidenav.toggle()">
+                    {{routeLink.label}}
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -17,6 +17,8 @@ export class AppComponent {
         { label: 'Itinerary', link: '/itinerary' },
     ];
 
+    useTabNavigation = false;
+
     constructor(private router: Router) {
         this.activeLink = router.events
             .pipe(
