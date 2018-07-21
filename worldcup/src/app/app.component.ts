@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+
 import {Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 
