@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
+import { GAMES } from '../data';
 
 @Component({
-  selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+    selector: 'app-schedule',
+    templateUrl: './schedule.component.html',
+    styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent {
+    readonly games = GAMES;
 
-  constructor() { }
+    readonly displayedColumns: string[] = ['city', 'date'];
 
-  ngOnInit() {
-  }
-
+    constructor() {}
 }

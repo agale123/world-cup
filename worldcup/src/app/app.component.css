@@ -8,16 +8,22 @@ mat-icon {
     height: 100%;
     width: 100%;
     position: absolute;
-
 }
 
 mat-sidenav {
     width: 256px;
 }
 
+mat-sidenav-container {
+    overflow-y: scroll;
+}
+
 mat-sidenav-content {
-    padding: 0 16px;
     height: 100%;
+}
+
+.mat-drawer-content {
+    overflow: visible;
 }
 
 .mat-drawer-container {

@@ -9,7 +9,8 @@ import {
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +37,7 @@ import { ItineraryComponent } from './itinerary/itinerary.component';
         MatMenuModule,
         MatSidenavModule,
         MatTabsModule,
+        MatTableModule,
         MatToolbarModule
     ],
     providers: [],
