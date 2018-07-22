@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatButtonModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatListModule,
     MatMenuModule,
     MatToolbarModule,
@@ -32,6 +35,9 @@ import { ItineraryComponent } from './itinerary/itinerary.component';
         AppRoutingModule,
         MatButtonModule,
         MatCardModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatExpansionModule,
         MatIconModule,
         MatListModule,
         MatMenuModule,
