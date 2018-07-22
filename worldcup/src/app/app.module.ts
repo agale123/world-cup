@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatButtonModule,
@@ -12,6 +13,7 @@ import {
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
+    MatSelectModule,
     MatTabsModule,
     MatTableModule,
 } from '@angular/material';
@@ -21,18 +23,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ItineraryComponent } from './itinerary/itinerary.component';
+import { FilterChipComponent } from './schedule/filter-chip/filter-chip.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         ScheduleComponent,
-        ItineraryComponent
+        ItineraryComponent,
+        FilterChipComponent
     ],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
         MatButtonModule,
         MatCardModule,
         MatChipsModule,
@@ -41,10 +46,12 @@ import { ItineraryComponent } from './itinerary/itinerary.component';
         MatIconModule,
         MatListModule,
         MatMenuModule,
+        MatSelectModule,
         MatSidenavModule,
         MatTabsModule,
         MatTableModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ReactiveFormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { GAMES } from '../data';
-import {DataService} from '../data.service';
+import { CITIES, TEAMS } from '../data';
+import { DataService } from '../data.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-schedule',
@@ -10,8 +10,15 @@ import {DataService} from '../data.service';
 })
 export class ScheduleComponent {
     readonly games;
-
     readonly displayedColumns: string[] = ['home', 'away', 'city', 'date'];
+
+    teams = new FormControl();
+    readonly teamList: string[] = TEAMS;
+    teamChanges = this.teams.valueChanges;
+
+    cities = new FormControl();
+    readonly cityList: string[] = CITIES;
+    cityChanges = this.cities.valueChanges;
 
     constructor(dataService: DataService) {
         this.games = dataService.games;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {GAMES, GROUPS, GroupTeam, Team} from './data';
+import { GAMES, GROUPS, GroupTeam, Team } from './data';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DataService {
     readonly games = [];
 
@@ -18,7 +18,7 @@ export class DataService {
 
     lookupTeam(team: Team) {
         if ('index' in team) {
-        return GROUPS[team.group][team.index - 1];
+            return GROUPS[team.group][team.index - 1];
         } else {
             return '';
         }

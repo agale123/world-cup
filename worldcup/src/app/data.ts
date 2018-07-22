@@ -256,3 +256,8 @@ export const GROUPS = {
     'E': ['Brazil', 'South Korea', 'Costa Rica', 'Spain'],
     'F': ['France', 'England', 'Columbia', 'Mexico'],
 };
+
+export const TEAMS = [].concat(
+    ...Object.keys(GROUPS).map((value: Group) => GROUPS[value]));
+
+export const CITIES = Array.from(new Set(GAMES.map(game => game.city)).values());
