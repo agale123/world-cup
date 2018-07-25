@@ -6,4 +6,7 @@
         <ng-container *ngIf="!first">,</ng-container>
         {{value}}
     </span>
+    <button mat-icon-button (click)="deleteChip.emit()">
+        <mat-icon >close</mat-icon>
+    </button>
 </mat-chip>

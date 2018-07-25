@@ -17,7 +17,6 @@ mat-expansion-panel, table {
 
 mat-panel-title mat-icon {
     padding-right: 16px;
-    padding-top: 4px;
 }
 
 mat-form-field {

@@ -246,7 +246,14 @@ export const GAMES: Game[] = [
         home: group('F2'),
         away: group('F3')
     },
-];
+].sort((a, b) => {
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
+    if (aDate === bDate) {
+        return 0;
+    }
+    return aDate > bDate ? 1 : -1;
+}) as Game[];
 
 export const GROUPS = {
     'A': ['Canada', 'China', 'Netherlands', 'New Zealand'],
@@ -258,6 +265,7 @@ export const GROUPS = {
 };
 
 export const TEAMS = [].concat(
-    ...Object.keys(GROUPS).map((value: Group) => GROUPS[value]));
+    ...Object.keys(GROUPS).map((value: Group) => GROUPS[value])).sort();
 
-export const CITIES = Array.from(new Set(GAMES.map(game => game.city)).values());
+export const CITIES =
+    Array.from(new Set(GAMES.map(game => game.city)).values()).sort();
