@@ -2,7 +2,7 @@ mat-icon {
     padding-bottom: 2px;
 }
 
-.container {
+.app-container {
     display: flex;
     flex-direction: column;
     height: 100%;

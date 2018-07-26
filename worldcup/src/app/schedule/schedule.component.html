@@ -1,9 +1,9 @@
 <mat-toolbar class="page-title">
     Schedule Explorer
 </mat-toolbar>
-<div class="schedule-container">
+<div class="container">
     <div class="expansion-panel">
-        <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel hideToggle="true" class="content-width">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>filter_list</mat-icon>
@@ -43,9 +43,24 @@
             </mat-form-field>
         </mat-expansion-panel>
     </div>
+    <div class="expansion-panel">
+        <mat-expansion-panel hideToggle="true" class="content-width">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>timeline</mat-icon>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Explore schedule based on group finish 
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- Expanded contents here -->
+        </mat-expansion-panel>
+    </div>
     <div class="mat-elevation-z4">
         <table mat-table
-            [dataSource]="games | async">
+            [dataSource]="games | async"
+            class="content-width">
             <ng-container matColumnDef="city">
                 <th mat-header-cell
                     *matHeaderCellDef>City</th>

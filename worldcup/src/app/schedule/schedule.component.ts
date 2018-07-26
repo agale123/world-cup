@@ -38,9 +38,9 @@ export class ScheduleComponent {
             });
 
         this.hasNoFilter = combineLatest(this.teamChanges, this.cityChanges,
-        (teamChanges, cityChanges) => {
-            return teamChanges.length === 0 && cityChanges.length === 0;
-        });
+            (teamChanges, cityChanges) => {
+                return teamChanges.length === 0 && cityChanges.length === 0;
+            });
     }
 
     formatDate(dateString: Date): string {
