@@ -8,17 +8,24 @@ export class DataService {
     constructor() {
         GAMES.forEach(game => {
             this.games.push({
-                home: this.lookupTeam(game.home),
-                away: this.lookupTeam(game.away),
+                id: game.id,
+                home: game.home,
+                away: game.away,
                 date: game.date.toLocaleString('en-US'),
                 city: game.city,
             });
         });
     }
 
-    lookupTeam(team: Team) {
+    formatTeam(team: Team) {
         if ('index' in team) {
             return GROUPS[team.group][team.index - 1];
+        } else if ('seed' in team) {
+            return `${team.seed}${team.group.join('')}`;
+        } else if ('winner' in team) {
+            return `W${team.winner}`;
+        } else if ('loser' in team) {
+            return `L${team.loser}`;
         } else {
             return '';
         }

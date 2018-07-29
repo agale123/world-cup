@@ -61,6 +61,13 @@
         <table mat-table
             [dataSource]="games | async"
             class="content-width">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell
+                    *matHeaderCellDef>ID</th>
+                <td mat-cell
+                    *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+
             <ng-container matColumnDef="city">
                 <th mat-header-cell
                     *matHeaderCellDef>City</th>
@@ -79,14 +86,18 @@
                 <th mat-header-cell
                     *matHeaderCellDef>Home</th>
                 <td mat-cell
-                    *matCellDef="let element">{{element.home}}</td>
+                    *matCellDef="let element">
+                    {{dataService.formatTeam(element.home)}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="away">
                 <th mat-header-cell
                     *matHeaderCellDef>Away</th>
                 <td mat-cell
-                    *matCellDef="let element">{{element.away}}</td>
+                    *matCellDef="let element">
+                    {{dataService.formatTeam(element.away)}}
+                </td>
             </ng-container>
 
             <tr mat-header-row
