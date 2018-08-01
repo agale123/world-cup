@@ -3,7 +3,8 @@
 </mat-toolbar>
 <div class="container">
     <div class="expansion-panel">
-        <mat-expansion-panel hideToggle="true" class="content-width">
+        <mat-expansion-panel hideToggle="true"
+            class="content-width">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>filter_list</mat-icon>
@@ -44,17 +45,54 @@
         </mat-expansion-panel>
     </div>
     <div class="expansion-panel">
-        <mat-expansion-panel hideToggle="true" class="content-width">
+        <mat-expansion-panel hideToggle="true"
+            class="content-width">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>timeline</mat-icon>
+                    <mat-chip-list>
+                        <mat-chip color="primary"
+                            *ngFor="let chip of predictions | async; let i=index"
+                            selected>
+                            {{chip.team}}: {{chip.position}}
+                            <button mat-icon-button
+                                (click)="removePrediction($event, i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-chip>
+                    </mat-chip-list>
                 </mat-panel-title>
-                <mat-panel-description>
-                    Explore schedule based on group finish 
+                <mat-panel-description *ngIf="predictions.getValue().length === 0">
+                    Explore schedule based on group finish
                 </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <!-- Expanded contents here -->
+            <form>
+                <mat-form-field>
+                    <mat-select placeholder="Team"
+                        [(ngModel)]="predictionTeam"
+                        (selectionChange)="updateSubmit()"
+                        name="team">
+                        <mat-option *ngFor="let team of teamList"
+                            [value]="team"
+                            required="true">{{team}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select placeholder="Position"
+                        [(ngModel)]="predictionPosition"
+                        (selectionChange)="updateSubmit()"
+                        name="position">
+                        <mat-option *ngFor="let position of positionList"
+                            [value]="position"
+                            required="true">{{position}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button
+                    color="primary"
+                    [disabled]="isSubmitDisabled"
+                    (click)="addPrediction()">Submit</button>
+            </form>
         </mat-expansion-panel>
     </div>
     <div class="mat-elevation-z4">

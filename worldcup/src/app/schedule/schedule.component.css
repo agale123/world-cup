@@ -9,3 +9,14 @@ mat-panel-title mat-icon {
 mat-form-field {
     padding-right: 16px;
 }
+
+mat-chip span:last-of-type {
+    padding-right: 4px;
+}
+
+mat-chip-list mat-icon, mat-chip-list .mat-icon-button {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px !important;
+}

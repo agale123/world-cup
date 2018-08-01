@@ -30,4 +30,13 @@ export class DataService {
             return '';
         }
     }
+
+    getGroup(team: Team) {
+        for (const group of Object.keys(GROUPS)) {
+            if (GROUPS[group].indexOf(team) >= 0) {
+                return group;
+            }
+        }
+        throw new Error('Team not found');
+    }
 }

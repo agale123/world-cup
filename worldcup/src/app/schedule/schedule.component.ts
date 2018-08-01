@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { CITIES, TEAMS } from '../data';
+import { CITIES, TEAMS, Team } from '../data';
 import { DataService } from '../data.service';
 import { FormControl } from '@angular/forms';
-import { combineLatest } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { filter, map, startWith } from 'rxjs/operators';
+
+export interface Prediction {
+    team: string;
+    position: number;
+}
 
 @Component({
     selector: 'app-schedule',
@@ -22,9 +27,18 @@ export class ScheduleComponent {
     readonly cityList: string[] = CITIES;
     cityChanges = this.cities.valueChanges.pipe(startWith([]));
 
+    predictionPosition;
+    predictionTeam;
+    readonly positionList = ['1', '2'];
+
+    readonly predictions = new BehaviorSubject<Prediction[]>([]);
+
     readonly hasNoFilter;
 
+    isSubmitDisabled = true;
+
     constructor(private readonly dataService: DataService) {
+
         this.games = combineLatest(this.teamChanges, this.cityChanges,
             (teamChanges, cityChanges) => {
                 return dataService.games.filter(game => {
@@ -43,6 +57,44 @@ export class ScheduleComponent {
             (teamChanges, cityChanges) => {
                 return teamChanges.length === 0 && cityChanges.length === 0;
             });
+    }
+
+    updateSubmit() {
+        if (!this.predictionPosition || !this.predictionTeam) {
+            this.isSubmitDisabled = true;
+            return;
+        }
+        const predictions = this.predictions.getValue();
+        const newGroup = this.dataService.getGroup(this.predictionTeam);
+        for (const prediction of predictions) {
+            const group = this.dataService.getGroup(prediction.team as any);
+            if (group === newGroup
+                && prediction.position === this.predictionPosition) {
+                this.isSubmitDisabled = true;
+                return;
+            }
+        }
+        this.isSubmitDisabled = false;
+    }
+
+    addPrediction() {
+        const predictions = this.predictions.getValue();
+        predictions.push({
+            team: this.predictionTeam,
+            position: this.predictionPosition,
+        });
+        this.predictions.next(predictions);
+        this.predictionPosition = undefined;
+        this.predictionTeam = undefined;
+        this.updateSubmit();
+    }
+
+    removePrediction(event: Event, index: number) {
+        event.stopPropagation();
+        const current = this.predictions.getValue();
+        current.splice(index, 1);
+        this.predictions.next(current);
+        this.updateSubmit();
     }
 
     formatDate(dateString: Date): string {

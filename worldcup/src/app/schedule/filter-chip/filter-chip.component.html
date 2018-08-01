@@ -1,7 +1,7 @@
 <mat-chip color="primary"
     selected
     [class.hide]="!(showChip | async)">
-    {{label}}:
+    <ng-container *ngIf="label">{{label}}: </ng-container>
     <span *ngFor="let value of (valueChanges | async); let first = first">
         <ng-container *ngIf="!first">,</ng-container>
         {{value}}
