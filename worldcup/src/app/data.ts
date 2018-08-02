@@ -21,6 +21,7 @@ export interface InitialEliminationTeam {
 // of the game won to advance to this game.
 export interface EliminationTeam {
     winner: number;
+    teams?: string[];
 }
 
 // The 3rd place game is a special case.

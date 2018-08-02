@@ -2,6 +2,7 @@
     Schedule Explorer
 </mat-toolbar>
 <div class="container">
+    <!-- Table filtering panel -->
     <div class="expansion-panel">
         <mat-expansion-panel hideToggle="true"
             class="content-width">
@@ -44,6 +45,7 @@
             </mat-form-field>
         </mat-expansion-panel>
     </div>
+    <!-- Prediction setting panel -->
     <div class="expansion-panel">
         <mat-expansion-panel hideToggle="true"
             class="content-width">
@@ -54,7 +56,7 @@
                         <mat-chip color="primary"
                             *ngFor="let chip of predictions | async; let i=index"
                             selected>
-                            {{chip.team}}: {{chip.position}}
+                            {{chip.team}} ({{dataService.getGroup(chip.team)}}): {{chip.position}}
                             <button mat-icon-button
                                 (click)="removePrediction($event, i)">
                                 <mat-icon>close</mat-icon>
@@ -75,7 +77,9 @@
                         name="team">
                         <mat-option *ngFor="let team of teamList"
                             [value]="team"
-                            required="true">{{team}}</mat-option>
+                            required="true">
+                            {{team}} ({{dataService.getGroup(team)}})
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
@@ -95,6 +99,8 @@
             </form>
         </mat-expansion-panel>
     </div>
+
+    <!-- Table -->
     <div class="mat-elevation-z4">
         <table mat-table
             [dataSource]="games | async"

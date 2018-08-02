@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CITIES, TEAMS, Team } from '../data';
+import { CITIES, GROUPS, TEAMS, Team } from '../data';
 import { DataService } from '../data.service';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, combineLatest } from 'rxjs';
@@ -8,6 +8,7 @@ import { filter, map, startWith } from 'rxjs/operators';
 export interface Prediction {
     team: string;
     position: number;
+    group: string;
 }
 
 @Component({
@@ -37,11 +38,85 @@ export class ScheduleComponent {
 
     isSubmitDisabled = true;
 
-    constructor(private readonly dataService: DataService) {
+    private checkFirstEliminationGame(team: Team, predictions: Prediction[]) {
+        if ('seed' in team && team.group.length === 1) {
+            for (const prediction of predictions) {
+                if (`${team.seed}` === `${prediction.position}`
+                    && team.group[0] === prediction.group) {
+                    return this.dataService.getTeamObject(prediction.team);
+                }
+            }
+        }
+        return undefined;
+    }
 
-        this.games = combineLatest(this.teamChanges, this.cityChanges,
-            (teamChanges, cityChanges) => {
-                return dataService.games.filter(game => {
+    private checkEliminationGame(team: Team,
+        elimWinners: { [key: number]: string[] }) {
+        if ('winner' in team && !!elimWinners[team.winner]) {
+            team.teams = elimWinners[team.winner];
+            return team;
+        }
+        return undefined;
+    }
+
+    private addWinner(id: number, team: Team,
+        elimWinners: { [key: number]: string[] }) {
+        if (!elimWinners[id]) {
+            elimWinners[id] = [];
+        }
+        const current = elimWinners[id];
+        if ('teams' in team) {
+            elimWinners[id] = [...current, ...team.teams];
+        } else {
+            const name = this.dataService.formatTeam(team);
+            elimWinners[id] = [...current, name];
+        }
+    }
+
+    constructor(private readonly dataService: DataService) {
+        const gamesWithPredictions = this.predictions.pipe(
+            map(predictions => {
+                // Deep copy of array.
+                const games =
+                    JSON.parse(JSON.stringify(this.dataService.games));
+                const elimWinners: { [key: number]: string[] } = {};
+                for (const game of games) {
+                    const first =
+                        this.checkFirstEliminationGame(game.home, predictions);
+                    if (first) {
+                        game.home = first;
+                        this.addWinner(game.id, game.home, elimWinners);
+                    } else {
+                        const rest =
+                            this.checkEliminationGame(game.home, elimWinners);
+                        if (rest) {
+                            game.home = rest;
+                            this.addWinner(game.id, game.home, elimWinners);
+                        }
+                    }
+                    const updatedAway =
+                        this.checkFirstEliminationGame(game.away, predictions);
+                    if (updatedAway) {
+                        game.away = updatedAway;
+                        this.addWinner(game.id, game.away, elimWinners);
+                    } else {
+                        const rest =
+                            this.checkEliminationGame(game.away, elimWinners);
+                        if (rest) {
+                            game.away = rest;
+                            this.addWinner(game.id, game.away, elimWinners);
+                        }
+                    }
+
+                }
+                return games;
+            }),
+        );
+
+        this.games = combineLatest(
+            this.teamChanges, this.cityChanges, gamesWithPredictions,
+            (teamChanges, cityChanges, games) => {
+                return games.filter(game => {
                     const home = this.dataService.formatTeam(game.home);
                     const away = this.dataService.formatTeam(game.away);
                     const isCityMatch = cityChanges.length === 0
@@ -82,6 +157,7 @@ export class ScheduleComponent {
         predictions.push({
             team: this.predictionTeam,
             position: this.predictionPosition,
+            group: this.dataService.getGroup(this.predictionTeam),
         });
         this.predictions.next(predictions);
         this.predictionPosition = undefined;
