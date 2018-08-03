@@ -131,7 +131,9 @@
                     *matHeaderCellDef>Home</th>
                 <td mat-cell
                     *matCellDef="let element">
-                    {{dataService.formatTeam(element.home)}}
+                    <div *ngFor="let row of splitTeam(element.home)">
+                        {{row}}
+                    </div>
                 </td>
             </ng-container>
 
@@ -140,7 +142,9 @@
                     *matHeaderCellDef>Away</th>
                 <td mat-cell
                     *matCellDef="let element">
-                    {{dataService.formatTeam(element.away)}}
+                    <div *ngFor="let row of splitTeam(element.away)">
+                            {{row}}
+                        </div>
                 </td>
             </ng-container>
 

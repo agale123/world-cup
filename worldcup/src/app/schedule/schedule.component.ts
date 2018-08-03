@@ -185,6 +185,10 @@ export class ScheduleComponent {
         return `${month} ${day}, ${hour}:${minutes} ${post}`;
     }
 
+    splitTeam(team: Team) {
+        return this.dataService.formatTeam(team).split('|');
+    }
+
     private hasIntersection(a: string[], b: string[]) {
         for (const el of a) {
             if (b.indexOf(el) >= 0) {

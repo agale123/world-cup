@@ -4,7 +4,6 @@
 * Brainstorm a visualization for homepage
 
 ## Schedule
-* Render multiple teams in a single column
 * Support print to PDF view
 * Encode filters/predictions as query params so they can be bookmarked
 
