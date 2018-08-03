@@ -117,13 +117,15 @@ export class ScheduleComponent {
             this.teamChanges, this.cityChanges, gamesWithPredictions,
             (teamChanges, cityChanges, games) => {
                 return games.filter(game => {
-                    const home = this.dataService.formatTeam(game.home);
-                    const away = this.dataService.formatTeam(game.away);
+                    const home =
+                        this.dataService.formatTeam(game.home).split('|');
+                    const away =
+                        this.dataService.formatTeam(game.away).split('|');
                     const isCityMatch = cityChanges.length === 0
                         || cityChanges.indexOf(game.city) >= 0;
                     const isTeamMatch = teamChanges.length === 0
-                        || teamChanges.indexOf(home) >= 0
-                        || teamChanges.indexOf(away) >= 0;
+                        || this.hasIntersection(teamChanges, home)
+                        || this.hasIntersection(teamChanges, away);
                     return isCityMatch && isTeamMatch;
                 });
             });
@@ -181,5 +183,14 @@ export class ScheduleComponent {
         const minutes = date.getMinutes() === 0 ? '00' : '30';
         const post = date.getHours() > 12 ? 'PM' : 'AM';
         return `${month} ${day}, ${hour}:${minutes} ${post}`;
+    }
+
+    private hasIntersection(a: string[], b: string[]) {
+        for (const el of a) {
+            if (b.indexOf(el) >= 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
