@@ -9,3 +9,11 @@ mat-panel-title mat-icon {
 .mat-expansion-panel-header-title {
     flex-grow: 0;
 }
+
+mat-form-field, button {
+    margin-right: 16px;
+}
+
+mat-divider {
+    padding-bottom: 16px;
+}

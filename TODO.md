@@ -8,13 +8,14 @@
 * Encode filters/predictions as query params so they can be bookmarked
 
 ## Route
-* Add form for entering preferences
 * Determine optimal route based on preferences
+* Show trip summary card
 * Add table for rendering games
 * Support print to PDF view
 * Encode preferences as query params so they can be bookmarked
 
 ## Productionization
+* Move page titles into global toolbar
 * Workflow to deploy application
 * Set up monitoring
 * Browser/mobile testing
