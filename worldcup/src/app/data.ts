@@ -1,4 +1,4 @@
-export type City = 'Paris' | 'Reims' | 'Rennes' | 'Le Havre' | 'Valenciennes' | 'Grenoble' | 'Nice' | 'Montpellier';
+export type City = 'Paris' | 'Reims' | 'Rennes' | 'Le Havre' | 'Valenciennes' | 'Grenoble' | 'Nice' | 'Montpellier' | 'Lyon';
 
 export type Group = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
 
@@ -448,3 +448,43 @@ export const TEAMS = [].concat(
 
 export const CITIES =
     Array.from(new Set(GAMES.map(game => game.city)).values()).sort();
+
+/** Distances between pairs of cities (by road) in miles */
+export const DISTANCES = new Map([
+    [['Lyon', 'Paris'].sort().join(), 290],
+    [['Lyon', 'Reims'].sort().join(), 304],
+    [['Lyon', 'Rennes'].sort().join(), 462],
+    [['Lyon', 'Le Havre'].sort().join(), 408],
+    [['Lyon', 'Valenciennes'].sort().join(), 411],
+    [['Lyon', 'Grenoble'].sort().join(), 70],
+    [['Lyon', 'Nice'].sort().join(), 293],
+    [['Lyon', 'Montpellier'].sort().join(), 189],
+    [['Paris', 'Reims'].sort().join(), 90],
+    [['Paris', 'Rennes'].sort().join(), 220],
+    [['Paris', 'Le Havre'].sort().join(), 122],
+    [['Paris', 'Valenciennes'].sort().join(), 131],
+    [['Paris', 'Grenoble'].sort().join(), 357],
+    [['Paris', 'Nice'].sort().join(), 579],
+    [['Paris', 'Montpellier'].sort().join(), 465],
+    [['Reims', 'Rennes'].sort().join(), 303],
+    [['Reims', 'Le Havre'].sort().join(), 218],
+    [['Reims', 'Valenciennes'].sort().join(), 109],
+    [['Reims', 'Grenoble'].sort().join(), 372],
+    [['Reims', 'Nice'].sort().join(), 594],
+    [['Reims', 'Montpellier'].sort().join(), 490],
+    [['Rennes', 'Le Havre'].sort().join(), 173],
+    [['Rennes', 'Valenciennes'].sort().join(), 342],
+    [['Rennes', 'Grenoble'].sort().join(), 526],
+    [['Rennes', 'Nice'].sort().join(), 748],
+    [['Rennes', 'Montpellier'].sort().join(), 564],
+    [['Le Havre', 'Valenciennes'].sort().join(), 189],
+    [['Le Havre', 'Grenoble'].sort().join(), 476],
+    [['Le Havre', 'Nice'].sort().join(), 697],
+    [['Le Havre', 'Montpellier'].sort().join(), 577],
+    [['Valenciennes', 'Grenoble'].sort().join(), 479],
+    [['Valenciennes', 'Nice'].sort().join(), 701],
+    [['Valenciennes', 'Montpellier'].sort().join(), 597],
+    [['Grenoble', 'Nice'].sort().join(), 238],
+    [['Grenoble', 'Montpellier'].sort().join(), 184],
+    [['Nice', 'Montpellier'].sort().join(), 204],
+]);

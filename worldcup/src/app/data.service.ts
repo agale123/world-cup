@@ -5,6 +5,8 @@ import { GAMES, GROUPS, GroupTeam, Team } from './data';
 export class DataService {
     readonly games = [];
 
+    readonly gamesPerDay = new Map<string, string[]>();
+
     constructor() {
         GAMES.forEach(game => {
             this.games.push({
@@ -14,6 +16,14 @@ export class DataService {
                 date: game.date.toLocaleString('en-US'),
                 city: game.city,
             });
+
+            const key = `${game.date.toDateString()}${game.city}`;
+            if (!this.gamesPerDay.has(key)) {
+                this.gamesPerDay.set(key, []);
+            }
+            const current = this.gamesPerDay.get(key);
+            current.push(this.formatTeam(game.home));
+            current.push(this.formatTeam(game.away));
         });
     }
 
@@ -48,5 +58,10 @@ export class DataService {
             }
         }
         throw new Error('Team not found');
+    }
+
+    getGames(date: Date, city: string) {
+        const key = `${date.toDateString()}${city}`;
+        return this.gamesPerDay.get(key);
     }
 }

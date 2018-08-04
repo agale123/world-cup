@@ -8,9 +8,8 @@
 * Encode filters/predictions as query params so they can be bookmarked
 
 ## Route
-* Determine optimal route based on preferences
 * Show trip summary card
-* Add table for rendering games
+* Optimize algorithm parameters
 * Support print to PDF view
 * Encode preferences as query params so they can be bookmarked
 
