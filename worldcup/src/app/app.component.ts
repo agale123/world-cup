@@ -14,11 +14,13 @@ export class AppComponent {
     readonly activeLink: Observable<string>;
     readonly routeLinks = [
         { label: 'Home', link: '/home' },
-        { label: 'Schedule', link: '/schedule' },
-        { label: 'Itinerary', link: '/itinerary' },
+        { label: 'Schedule Explorer', link: '/schedule' },
+        { label: 'Itinerary Planner', link: '/itinerary' },
     ];
 
     useTabNavigation = false;
+
+    readonly subpage: Observable<string>;
 
     constructor(private router: Router) {
         this.activeLink = router.events
@@ -26,5 +28,16 @@ export class AppComponent {
                 filter(event => event instanceof NavigationEnd),
                 map((event: NavigationEnd) => event.urlAfterRedirects),
             );
+
+        this.subpage = this.activeLink.pipe(
+            map(path => {
+                for (const entry of this.routeLinks) {
+                    if (entry.link === path) {
+                        return entry.label;
+                    }
+                }
+                return this.routeLinks[0].label;
+            })
+        );
     }
 }

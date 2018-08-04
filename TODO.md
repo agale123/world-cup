@@ -15,7 +15,6 @@
 * Encode preferences as query params so they can be bookmarked
 
 ## Productionization
-* Move page titles into global toolbar
 * Workflow to deploy application
 * Set up monitoring
 * Browser/mobile testing

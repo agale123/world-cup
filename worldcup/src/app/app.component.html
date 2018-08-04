@@ -5,7 +5,9 @@
             (click)="sidenav.toggle()">
             <mat-icon aria-label="Open menu">menu</mat-icon>
         </button>
-        <h1 [class.padding-left]="!useTabNavigation">World Cup Explorer</h1>
+        <h1 [class.padding-left]="!useTabNavigation">
+            World Cup: {{subpage | async}}
+        </h1>
     </mat-toolbar>
     <nav mat-tab-nav-bar
         *ngIf="useTabNavigation">
