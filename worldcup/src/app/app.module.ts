@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ItineraryComponent } from './itinerary/itinerary.component';
 import { FilterChipComponent } from './schedule/filter-chip/filter-chip.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { FilterChipComponent } from './schedule/filter-chip/filter-chip.componen
         HomeComponent,
         ScheduleComponent,
         ItineraryComponent,
-        FilterChipComponent
+        FilterChipComponent,
+        TableComponent
     ],
     imports: [
         BrowserAnimationsModule,

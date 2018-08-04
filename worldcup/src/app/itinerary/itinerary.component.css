@@ -1,0 +1,11 @@
+.expansion-panel {
+    margin-bottom: 16px;
+}
+
+mat-panel-title mat-icon {
+    padding-right: 16px;
+}
+
+.mat-expansion-panel-header-title {
+    flex-grow: 0;
+}

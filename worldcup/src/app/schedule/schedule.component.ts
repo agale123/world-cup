@@ -18,7 +18,6 @@ export interface Prediction {
 })
 export class ScheduleComponent {
     readonly games;
-    readonly displayedColumns: string[] = ['id', 'home', 'away', 'city', 'date'];
 
     teams = new FormControl();
     readonly teamList: string[] = TEAMS;
@@ -173,20 +172,6 @@ export class ScheduleComponent {
         current.splice(index, 1);
         this.predictions.next(current);
         this.updateSubmit();
-    }
-
-    formatDate(dateString: Date): string {
-        const date = new Date(dateString);
-        const month = date.getMonth() === 6 ? 'June' : 'July';
-        const day = date.getDate().toString();
-        const hour = (date.getHours() % 12).toString();
-        const minutes = date.getMinutes() === 0 ? '00' : '30';
-        const post = date.getHours() > 12 ? 'PM' : 'AM';
-        return `${month} ${day}, ${hour}:${minutes} ${post}`;
-    }
-
-    splitTeam(team: Team) {
-        return this.dataService.formatTeam(team).split('|');
     }
 
     private hasIntersection(a: string[], b: string[]) {

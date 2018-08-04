@@ -2,7 +2,24 @@
     Itinerary Planner
 </mat-toolbar>
 <div class="container">
-    <mat-card class="content-width">
-        Settings for optimizing schedule
-    </mat-card>  
+    <!-- Prediction setting panel -->
+    <div class="expansion-panel">
+            <mat-expansion-panel hideToggle="true" expanded="true"
+                class="content-width">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Pick your favorite teams to plan an itinerary
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+            </mat-expansion-panel>
+        </div>
+
+    <!-- Table -->
+    <div class="mat-elevation-z4">
+        <app-table [games]="games"></app-table>>
+    </div>
 </div>
