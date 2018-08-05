@@ -1,7 +1,9 @@
 # TODO
 
 ## Home
-* Brainstorm a visualization for homepage
+* Add map to home page
+* Show stats about recent world cups and wins
+* Link to schedule page with filter for country
 
 ## Schedule
 * Support print to PDF view
