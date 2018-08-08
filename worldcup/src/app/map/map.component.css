@@ -1,0 +1,9 @@
+.wrapper {
+    overflow: hidden;
+}
+
+.map {
+    position: relative;
+    width: 814px;
+    left: -14px;
+}

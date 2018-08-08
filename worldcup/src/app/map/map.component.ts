@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
 
         const options = {
             legend: 'none',
-            width: '800px',
+            width: '814px',
         };
 
         const chart =

@@ -3,7 +3,7 @@
 ## Home
 * Show stats about recent world cups and wins
 * Add maps API key
-* Center map and configure colors
+* Configure colors
 * Link to schedule page with filter for country
 
 ## Schedule
