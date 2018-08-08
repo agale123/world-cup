@@ -440,7 +440,7 @@ export const GROUPS = {
     'C': ['Japan', 'Cameroon', 'Switzerland', 'Ecuador'],
     'D': ['United States', 'Australia', 'Sweden', 'Nigeria'],
     'E': ['Brazil', 'South Korea', 'Costa Rica', 'Spain'],
-    'F': ['France', 'England', 'Columbia', 'Mexico'],
+    'F': ['France', 'England', 'Colombia', 'Mexico'],
 };
 
 export const TEAMS = [].concat(

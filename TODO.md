@@ -1,8 +1,9 @@
 # TODO
 
 ## Home
-* Add map to home page
 * Show stats about recent world cups and wins
+* Add maps API key
+* Center map and configure colors
 * Link to schedule page with filter for country
 
 ## Schedule
