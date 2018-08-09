@@ -17,3 +17,9 @@ mat-form-field, button {
 mat-divider {
     padding-bottom: 16px;
 }
+
+@media print {
+    .expansion-panel {
+        display: none;
+    }
+}

@@ -31,3 +31,13 @@ mat-sidenav-content {
     padding: 16px;
     background-color: #f5f5f5;
 }
+
+@media print {
+    .content-width {
+        width: 7.5in;
+    }
+    
+    .mat-elevation-z4 {
+        box-shadow: none;
+    }
+}

@@ -29,3 +29,18 @@ mat-sidenav-content {
 .mat-drawer-container {
     height: 100%;
 }
+
+@media print {
+    .app-container {
+        height: auto;
+    }
+
+    .mat-icon-button {
+        display: none;
+    }
+
+    
+    .mat-drawer-container {
+        overflow: hidden;
+    }
+}

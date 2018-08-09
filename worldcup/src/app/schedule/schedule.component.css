@@ -2,12 +2,21 @@
     margin-bottom: 16px;
 }
 
+mat-panel-title {
+    height: 32px;
+}
+
 mat-panel-title mat-icon {
     padding-right: 16px;
+    padding-top: 4px;
 }
 
 .mat-expansion-panel-header-title {
     flex-grow: 0;
+}
+
+.mat-expansion-panel-header-description {
+    padding-top: 4px;
 }
 
 mat-form-field {
@@ -23,4 +32,10 @@ mat-chip-list mat-icon, mat-chip-list .mat-icon-button {
     height: 16px;
     width: 16px;
     line-height: 16px !important;
+}
+
+@media print {
+    .expansion-panel {
+        display: none;
+    }
 }
