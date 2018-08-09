@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CITIES, DISTANCES, Team, TEAMS } from '../data';
 import { DataService } from '../data.service';
@@ -38,7 +39,29 @@ export class ItineraryComponent {
 
     games = [];
 
-    constructor(private readonly dataService: DataService) {
+    constructor(private readonly dataService: DataService,
+        private readonly activatedRoute: ActivatedRoute,
+        private readonly router: Router) {
+        const initialState = this.activatedRoute.snapshot.queryParams;
+        if (initialState.w) {
+
+            this.preferences = initialState.w.split(',').map(p => {
+                return {
+                    weight: parseInt(p.slice(0, 1), 10),
+                    team: p.slice(1),
+                };
+            }).filter(pref => {
+                return pref.weight >= 1 && pref.weight <= 5
+                    && TEAMS.includes(pref.team);
+            });
+
+            if (this.preferences.length > 0) {
+                this.computeItinerary();
+            } else {
+                this.preferences = [{}];
+            }
+
+        }
     }
 
     addTeam() {
@@ -49,7 +72,21 @@ export class ItineraryComponent {
         this.preferences.splice(index, 1);
     }
 
+    private updateQueryParams() {
+        const formatted =
+            this.preferences.map(p => `${p.weight}${p.team}`);
+        this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: {
+                ...this.activatedRoute.snapshot.queryParams,
+                w: formatted.length === 0 ? undefined :
+                    formatted.toString(),
+            },
+        });
+    }
+
     computeItinerary() {
+        this.updateQueryParams();
         let prev = INITIAL;
         let next = [];
         const date = new Date(START_DATE);

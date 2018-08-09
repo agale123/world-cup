@@ -225,10 +225,15 @@ export class ScheduleComponent {
         const initialState = this.activatedRoute.snapshot.queryParams;
         setTimeout(() => {
             if (initialState.t) {
-                this.teams.setValue(initialState.t.split(','));
+                const teams = initialState.t.split(',')
+                    .filter(team => TEAMS.includes(team));
+
+                this.teams.setValue(teams);
             }
             if (initialState.c) {
-                this.cities.setValue(initialState.c.split(','));
+                const cities = initialState.c.split(',')
+                    .filter(city => CITIES.includes(city));
+                this.cities.setValue(cities);
             }
             if (initialState.p) {
                 this.predictions.next(initialState.p.split(',').map(p => {
@@ -236,6 +241,9 @@ export class ScheduleComponent {
                         position: parseInt(p.slice(0, 1), 10),
                         team: p.slice(1)
                     };
+                }).filter(pred => {
+                    return TEAMS.includes(pred.team)
+                        && (pred.position === 1 || pred.position === 2);
                 }));
             }
         });
