@@ -2,6 +2,10 @@
     margin-bottom: 16px;
 }
 
+.summary {
+    padding-bottom: 16px;
+}
+
 mat-panel-title mat-icon {
     padding-right: 16px;
 }
@@ -16,6 +20,31 @@ mat-form-field, button {
 
 mat-divider {
     padding-bottom: 16px;
+}
+
+mat-card div {
+    font-size: 14px;
+}
+
+.value {
+    display: inline-block;
+    padding-right: 4px;
+}
+
+mat-card {
+    display: flex;
+    flex-direction: row;
+}
+
+mat-card h4 {
+    margin-top: 0;
+}
+
+.map {
+    width: 140px;
+    height: 140px;
+    background-color: blue;
+    flex-shrink: 0;
 }
 
 @media print {

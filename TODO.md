@@ -5,7 +5,7 @@
 ## Schedule
 
 ## Route
-* Show trip summary card (miles, # cities, # games per team)
+* Render trip map
 * Optimize algorithm parameters
 
 ## Productionization

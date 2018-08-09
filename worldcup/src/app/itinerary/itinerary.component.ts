@@ -37,7 +37,13 @@ export class ItineraryComponent {
 
     readonly teamList: string[] = TEAMS;
 
+    // Final list of games.
     games = [];
+
+    // Summary stats.
+    teams = [];
+    cities = [];
+    distanceTravelled = 0;
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
@@ -132,6 +138,8 @@ export class ItineraryComponent {
             const indexedDate = gameDate.getDate() - START_DATE.getDate();
             return bestPath[indexedDate] === game.city;
         });
+
+        this.computeSummary(bestPath);
     }
 
     isSubmitDisabled() {
@@ -146,6 +154,42 @@ export class ItineraryComponent {
             teams.add(pref.team);
         }
         return false;
+    }
+
+    private computeSummary(path: (string | null)[]) {
+        // Compute total distance.
+        this.distanceTravelled = 0;
+        const dedupedPath = path.filter((item, index, array) => {
+            return !!item && (index === 0 || item !== array[index - 1]);
+        });
+        for (let i = 1; i < dedupedPath.length; i++) {
+            this.distanceTravelled +=
+                this.distance(dedupedPath[i - 1], dedupedPath[i]);
+        }
+
+        // Compute list of cities.
+        this.cities = Array.from(new Set(path.filter(city => !!city))).sort();
+
+        // Compute list of teams.
+        const teams = [];
+        this.games.forEach(game => {
+            teams.push(this.dataService.formatTeam(game.home));
+            teams.push(this.dataService.formatTeam(game.away));
+        });
+        const dedupedTeams = Array.from(new Set(teams)).map(t => {
+            return {
+                team: t,
+                count: teams.reduce((n, val) => n + (val === t), 0)
+            };
+        });
+        this.teams = dedupedTeams.sort((a, b) => {
+            if (a.count > b.count) {
+                return -1;
+            } else if (a.count < b.count) {
+                return 1;
+            }
+            return 0;
+        }).map(val => `${val.team} (${val.count})`);
     }
 
     private reward(date: Date, city: string | null) {

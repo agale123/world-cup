@@ -34,9 +34,9 @@
                             name="weight-{{i}}"
                             placeholder="Weight (1-5)"
                             [(ngModel)]="x.weight">
-                            <mat-error>
-                                Please enter a value between 1 and 5
-                            </mat-error>
+                        <mat-error>
+                            Please enter a value between 1 and 5
+                        </mat-error>
                     </mat-form-field>
                     <button mat-icon-button
                         *ngIf="preferences.length > 1"
@@ -62,8 +62,42 @@
         </mat-expansion-panel>
     </div>
 
+    <div class="content-width summary"
+        *ngIf="games.length > 0">
+        <mat-card>
+            <div>
+                <h4>Trip Summary</h4>
+                <div>
+                    <b>Distance: </b>{{distanceTravelled}}
+                </div>
+                <br>
+                <div>
+                    <b>Cities: </b>
+                    <span *ngFor="let city of cities; last as isLast"
+                        class="value">
+                        {{city}}
+                        <ng-container *ngIf="!isLast">, </ng-container>
+                    </span>
+                </div>
+                <br>
+                <div>
+                    <b>Teams: </b>
+                    <span *ngFor="let team of teams; last as isLast"
+                        class="value">
+                        {{team}}
+                        <ng-container *ngIf="!isLast">, </ng-container>
+                    </span>
+                </div>
+            </div>
+            <div class="map">
+            </div>
+        </mat-card>
+
+    </div>
+
     <!-- Table -->
-    <div class="mat-elevation-z4" *ngIf="games.length > 0">
+    <div class="mat-elevation-z4"
+        *ngIf="games.length > 0">
         <app-table [games]="games"></app-table>
     </div>
 </div>
