@@ -20,7 +20,6 @@ export class MapComponent implements OnInit {
     ngOnInit() {
         google.charts.load('current', {
             packages: ['geochart'],
-            'mapsApiKey': 'AIzaSyDP5Us2tBLB5LobQZCelYnci9Hcu8MP7AU',
         });
         google.charts.setOnLoadCallback(() => this.drawMap());
     }
