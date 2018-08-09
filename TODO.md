@@ -1,17 +1,17 @@
 # TODO
 
 ## Home
-* Link to schedule page with filter for country
 
 ## Schedule
 * Support print to PDF view
-* Encode filters/predictions as query params so they can be bookmarked
+* Error handling for query params
 
 ## Route
 * Show trip summary card
 * Optimize algorithm parameters
 * Support print to PDF view
 * Encode preferences as query params so they can be bookmarked
+* Error handling for query params
 
 ## Productionization
 * Workflow to deploy application

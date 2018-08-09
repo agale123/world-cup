@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { STATS } from '../data';
 
@@ -14,7 +14,8 @@ export class MapComponent implements OnInit {
 
     @ViewChild('map') mapElement: ElementRef;
 
-    constructor(private readonly router: Router) { }
+    constructor(private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
         google.charts.load('current', {
@@ -46,8 +47,12 @@ export class MapComponent implements OnInit {
         google.visualization.events.addListener(chart, 'select', () => {
             const selection = chart.getSelection()[0].row;
             const country = dataArray[selection + 1][0];
-            // TODO: Add the selected country as a query param.
-            this.router.navigate(['schedule']);
+            this.router.navigate(['schedule'], {
+                queryParams: {
+                    ...this.activatedRoute.snapshot.queryParams,
+                    t: country,
+                }
+            });
         });
     }
 }

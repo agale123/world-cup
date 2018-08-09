@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CITIES, GROUPS, TEAMS, Team } from '../data';
 import { DataService } from '../data.service';
 import { FormControl } from '@angular/forms';
@@ -72,7 +73,11 @@ export class ScheduleComponent {
         }
     }
 
-    constructor(private readonly dataService: DataService) {
+    constructor(private readonly dataService: DataService,
+        private readonly activatedRoute: ActivatedRoute,
+        private readonly router: Router) {
+        this.initializeState();
+
         const gamesWithPredictions = this.predictions.pipe(
             map(predictions => {
                 // Deep copy of array.
@@ -133,6 +138,39 @@ export class ScheduleComponent {
             (teamChanges, cityChanges) => {
                 return teamChanges.length === 0 && cityChanges.length === 0;
             });
+
+        this.teamChanges.subscribe(teams => {
+            this.router.navigate([], {
+                relativeTo: this.activatedRoute,
+                queryParams: {
+                    ...this.activatedRoute.snapshot.queryParams,
+                    t: teams.length === 0 ? undefined : teams.toString(),
+                },
+            });
+        });
+
+        this.cityChanges.subscribe(cities => {
+            this.router.navigate([], {
+                relativeTo: this.activatedRoute,
+                queryParams: {
+                    ...this.activatedRoute.snapshot.queryParams,
+                    c: cities.length === 0 ? undefined : cities.toString(),
+                },
+            });
+        });
+
+        this.predictions.subscribe(predictions => {
+            const formatted =
+                predictions.map(p => `${p.position}${p.team}`);
+            this.router.navigate([], {
+                relativeTo: this.activatedRoute,
+                queryParams: {
+                    ...this.activatedRoute.snapshot.queryParams,
+                    p: formatted.length === 0 ? undefined :
+                        formatted.toString(),
+                },
+            });
+        });
     }
 
     updateSubmit() {
@@ -181,5 +219,25 @@ export class ScheduleComponent {
             }
         }
         return false;
+    }
+
+    private initializeState() {
+        const initialState = this.activatedRoute.snapshot.queryParams;
+        setTimeout(() => {
+            if (initialState.t) {
+                this.teams.setValue(initialState.t.split(','));
+            }
+            if (initialState.c) {
+                this.cities.setValue(initialState.c.split(','));
+            }
+            if (initialState.p) {
+                this.predictions.next(initialState.p.split(',').map(p => {
+                    return {
+                        position: parseInt(p.slice(0, 1), 10),
+                        team: p.slice(1)
+                    };
+                }));
+            }
+        });
     }
 }
