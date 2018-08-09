@@ -1,9 +1,6 @@
 # TODO
 
 ## Home
-* Show stats about recent world cups and wins
-* Add maps API key
-* Configure colors
 * Link to schedule page with filter for country
 
 ## Schedule
@@ -20,3 +17,5 @@
 * Workflow to deploy application
 * Set up monitoring
 * Browser/mobile testing
+* Update teams data based on qualifiers
+* Restrict maps API key

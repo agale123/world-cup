@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {TEAMS} from '../data';
+import { STATS } from '../data';
 
 declare var google: any;
 
@@ -13,29 +14,40 @@ export class MapComponent implements OnInit {
 
     @ViewChild('map') mapElement: ElementRef;
 
-    constructor() { }
+    constructor(private readonly router: Router) { }
 
     ngOnInit() {
-        // TODO: add mapsApiKey
-        google.charts.load('current', { packages: ['geochart'] });
+        google.charts.load('current', {
+            packages: ['geochart'],
+            'mapsApiKey': 'AIzaSyDP5Us2tBLB5LobQZCelYnci9Hcu8MP7AU',
+        });
         google.charts.setOnLoadCallback(() => this.drawMap());
     }
 
     private drawMap() {
-        const dataArray = [['Country', 'Appearances']];
-        TEAMS.forEach(team => {
-            dataArray.push([team, 1]);
+        const dataArray = [['Country', 'Appearances', 'Wins']];
+        Object.keys(STATS).forEach((team: string) => {
+            dataArray.push([team, STATS[team].appearances, STATS[team].wins]);
         });
         const data = google.visualization.arrayToDataTable(dataArray);
 
         const options = {
             legend: 'none',
             width: '814px',
+            colorAxis: { colors: ['#9FA8DA', '#3f51b5'] },
+            enableRegionInteractivity: true,
         };
 
         const chart =
             new google.visualization.GeoChart(this.mapElement.nativeElement);
 
         chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'select', () => {
+            const selection = chart.getSelection()[0].row;
+            const country = dataArray[selection + 1][0];
+            // TODO: Add the selected country as a query param.
+            this.router.navigate(['schedule']);
+        });
     }
 }

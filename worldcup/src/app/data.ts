@@ -443,6 +443,33 @@ export const GROUPS = {
     'F': ['France', 'England', 'Colombia', 'Mexico'],
 };
 
+export const STATS = {
+    'Canada': {'appearances': 6, 'wins': 0},
+    'China': {'appearances': 6, 'wins': 0},
+    'Netherlands': {'appearances': 1, 'wins': 0},
+    'New Zealand': {'appearances': 4, 'wins': 0},
+    'Germany': {'appearances': 7, 'wins': 2},
+    'Norway': {'appearances': 7, 'wins': 1},
+    'Thailand': {'appearances': 1, 'wins': 0},
+    'Ivory Coast': {'appearances': 1, 'wins': 0},
+    'Japan': {'appearances': 7, 'wins': 1},
+    'Cameroon': {'appearances': 1, 'wins': 0},
+    'Switzerland': {'appearances': 1, 'wins': 0},
+    'Ecuador': {'appearances': 1, 'wins': 0},
+    'United States': {'appearances': 7, 'wins': 3},
+    'Australia': {'appearances': 6, 'wins': 0},
+    'Sweden': {'appearances': 7, 'wins': 0},
+    'Nigeria': {'appearances': 7, 'wins': 0},
+    'Brazil': {'appearances': 7, 'wins': 0},
+    'South Korea': {'appearances': 2, 'wins': 0},
+    'Costa Rica': {'appearances': 1, 'wins': 0},
+    'Spain': {'appearances': 1, 'wins': 0},
+    'France': {'appearances': 3, 'wins': 0},
+    'England': {'appearances': 4, 'wins': 0},
+    'Colombia': {'appearances': 2, 'wins': 0},
+    'Mexico': {'appearances': 3, 'wins': 0},
+};
+
 export const TEAMS = [].concat(
     ...Object.keys(GROUPS).map((value: Group) => GROUPS[value])).sort();
 
