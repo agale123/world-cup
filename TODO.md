@@ -5,7 +5,8 @@
 ## Schedule
 
 ## Route
-* Render trip map
+* Test using interactive map
+* Style map
 * Optimize algorithm parameters
 
 ## Productionization

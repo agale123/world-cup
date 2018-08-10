@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CITIES, DISTANCES, Team, TEAMS } from '../data';
 import { DataService } from '../data.service';
-import { indexDebugNode } from '../../../node_modules/@angular/core/src/debug/debug_node';
+import {API_KEY} from '../key';
 
 export interface Preference {
     team?: string;
@@ -25,6 +25,9 @@ const INITIAL = [
 
 const START_DATE = new Date(2019, 6, 7);
 const END_DATE = new Date(2019, 6, 20);
+
+const MAP_BASE = 'https://maps.googleapis.com/maps/api/staticmap';
+const MAP_SETTINGS = '&zoom=4&size=160x160&maptype=roadmap';
 
 @Component({
     selector: 'app-itinerary',
@@ -154,6 +157,15 @@ export class ItineraryComponent {
             teams.add(pref.team);
         }
         return false;
+    }
+
+    getMapSrc() {
+        let src = `${MAP_BASE}?center=France${MAP_SETTINGS}&key=${API_KEY}`;
+        src += '&markers=color:0x3f51b5|size:tiny';
+        this.cities.forEach(city => {
+            src += `|${city},FR`;
+        });
+        return src;
     }
 
     private computeSummary(path: (string | null)[]) {

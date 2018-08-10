@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { STATS } from '../data';
+import { API_KEY } from '../key';
 
 declare var google: any;
 
@@ -20,6 +21,7 @@ export class MapComponent implements OnInit {
     ngOnInit() {
         google.charts.load('current', {
             packages: ['geochart'],
+            mapsApiKey: API_KEY,
         });
         google.charts.setOnLoadCallback(() => this.drawMap());
     }
