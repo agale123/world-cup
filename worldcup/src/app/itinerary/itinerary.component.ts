@@ -17,9 +17,9 @@ export interface Node {
     path: (string | null)[];
 }
 
-const DEFAULT_WEIGHT = 0.75;
-const GAME_MULTIPLIER = 100;
-const GAME_POWER = 1.25;
+const DEFAULT_WEIGHT = 0.5;
+const GAME_MULTIPLIER = 20;
+const DISTANCE_POWER = 0.5;
 
 const INITIAL = [
     { path: [null], value: 0 },
@@ -65,16 +65,13 @@ export class ItineraryComponent implements OnInit {
                 return pref.weight >= 1 && pref.weight <= 5
                     && TEAMS.includes(pref.team);
             });
-
-            if (this.preferences.length === 0) {
-                this.preferences = [{}];
-            }
-
         }
     }
 
     ngOnInit() {
-        if (this.preferences.length > 0) {
+        if (this.preferences.length === 0) {
+            this.preferences = [{}];
+        } else {
             this.computeItinerary();
         }
 
@@ -121,9 +118,9 @@ export class ItineraryComponent implements OnInit {
                 let value = Number.NEGATIVE_INFINITY;
                 let path = [];
                 for (const node of prev) {
-                    const dist =
-                        this.distance(node.path[node.path.length - 1], city);
-                    const newValue = node.value - dist;
+                    const cost =
+                        this.cost(node.path[node.path.length - 1], city);
+                    const newValue = node.value + cost;
                     if (newValue > value && !(!city && !!node.value)) {
                         value = newValue;
                         path = [...node.path];
@@ -258,10 +255,14 @@ export class ItineraryComponent implements OnInit {
                     weight = pref.weight;
                 }
             });
-            value += Math.pow(weight, GAME_POWER) * GAME_MULTIPLIER;
+            value += weight * GAME_MULTIPLIER / this.preferences.length;
         });
 
         return value;
+    }
+
+    private cost(a: string | null, b: string | null) {
+        return -1 * Math.pow(this.distance(a, b), DISTANCE_POWER);
     }
 
     private distance(a: string | null, b: string | null) {

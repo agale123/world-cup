@@ -1,16 +1,16 @@
 # TODO
 
-## Home
-
-## Schedule
-
-## Route
-* Optimize algorithm parameters
-
 ## Productionization
 * Browser/mobile testing
+    * Chrome
+    * Firefox
+    * Edge
+    * Safari
+    * Mobile
 * Set up and restrict maps API key
-* Workflow to deploy application
+* Create docker container
+* Deploy on GCP
+* Set up domain
 * Set up monitoring
 * Move existing site off wordpress (before Oct 2)
 * Ensure domain renewal (before Oct 17)
