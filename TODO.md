@@ -1,6 +1,7 @@
 # TODO
 
 ## Productionization
+* Add favicon
 * Browser/mobile testing
     * Chrome
     * Firefox
