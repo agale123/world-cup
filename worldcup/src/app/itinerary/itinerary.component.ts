@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CITIES, DISTANCES, Team, TEAMS } from '../data';
 import { DataService } from '../data.service';
-import {API_KEY} from '../key';
+import { API_KEY } from '../key';
+
+declare var google: any;
 
 export interface Preference {
     team?: string;
@@ -26,15 +28,14 @@ const INITIAL = [
 const START_DATE = new Date(2019, 6, 7);
 const END_DATE = new Date(2019, 6, 20);
 
-const MAP_BASE = 'https://maps.googleapis.com/maps/api/staticmap';
-const MAP_SETTINGS = '&zoom=4&size=160x160&maptype=roadmap';
-
 @Component({
     selector: 'app-itinerary',
     templateUrl: './itinerary.component.html',
     styleUrls: ['./itinerary.component.css']
 })
-export class ItineraryComponent {
+export class ItineraryComponent implements OnInit {
+
+    @ViewChild('map') mapElement: ElementRef;
 
     preferences: Preference[] = [{}];
 
@@ -47,6 +48,8 @@ export class ItineraryComponent {
     teams = [];
     cities = [];
     distanceTravelled = 0;
+
+    private chartsLoaded = false;
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
@@ -71,6 +74,19 @@ export class ItineraryComponent {
             }
 
         }
+    }
+
+    ngOnInit() {
+        google.charts.load('current', {
+            packages: ['geochart'],
+            mapsApiKey: API_KEY,
+        });
+        google.charts.setOnLoadCallback(() => {
+            this.chartsLoaded = true;
+            if (this.games.length > 0) {
+                this.drawMap();
+            }
+        });
     }
 
     addTeam() {
@@ -159,13 +175,30 @@ export class ItineraryComponent {
         return false;
     }
 
-    getMapSrc() {
-        let src = `${MAP_BASE}?center=France${MAP_SETTINGS}&key=${API_KEY}`;
-        src += '&markers=color:0x3f51b5|size:tiny';
+    private drawMap() {
+        const dataArray = [['City', 'Games']];
         this.cities.forEach(city => {
-            src += `|${city},FR`;
+            const count =
+                this.games.reduce((n, val) => n + (val.city === city), 0);
+            dataArray.push([city, count]);
         });
-        return src;
+        const data = google.visualization.arrayToDataTable(dataArray);
+
+        const options = {
+            region: 'FR',
+            legend: 'none',
+            displayMode: 'markers',
+            colorAxis: { colors: ['#3f51b5', '#3f51b5'] },
+            height: '160px',
+            resolution: 'provinces',
+            magnifyingGlass: { enable: 'false' },
+            sizeAxis: { minValue: 1, maxValue: 8 },
+        };
+
+        const chart =
+            new google.visualization.GeoChart(this.mapElement.nativeElement);
+
+        chart.draw(data, options);
     }
 
     private computeSummary(path: (string | null)[]) {
@@ -202,6 +235,10 @@ export class ItineraryComponent {
             }
             return 0;
         }).map(val => `${val.team} (${val.count})`);
+
+        if (this.chartsLoaded) {
+            this.drawMap();
+        }
     }
 
     private reward(date: Date, city: string | null) {
