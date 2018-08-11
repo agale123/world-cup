@@ -32,7 +32,7 @@ export class AppComponent {
         this.subpage = this.activeLink.pipe(
             map(path => {
                 for (const entry of this.routeLinks) {
-                    if (entry.link === path) {
+                    if (path.startsWith(entry.link)) {
                         return entry.label;
                     }
                 }
