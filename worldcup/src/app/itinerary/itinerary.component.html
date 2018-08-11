@@ -75,8 +75,8 @@
                     <b>Cities: </b>
                     <span *ngFor="let city of cities; last as isLast"
                         class="value">
-                        {{city}}
-                        <ng-container *ngIf="!isLast">, </ng-container>
+                        <span *ngIf="!isLast">{{city}}, </span>
+                        <span *ngIf="isLast">{{city}}</span>
                     </span>
                 </div>
                 <br>
@@ -84,8 +84,8 @@
                     <b>Teams: </b>
                     <span *ngFor="let team of teams; last as isLast"
                         class="value">
-                        {{team}}
-                        <ng-container *ngIf="!isLast">, </ng-container>
+                        <span *ngIf="!isLast">{{team}}, </span>
+                        <span *ngIf="isLast">{{team}}</span>
                     </span>
                 </div>
             </div>

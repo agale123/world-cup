@@ -5,7 +5,6 @@
 ## Schedule
 
 ## Route
-* Fix bug where Spain (4) and Sweden (3) causes route to end in Reime
 * Optimize algorithm parameters
 
 ## Productionization

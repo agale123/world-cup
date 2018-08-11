@@ -56,7 +56,6 @@ export class ItineraryComponent implements OnInit {
         private readonly router: Router) {
         const initialState = this.activatedRoute.snapshot.queryParams;
         if (initialState.w) {
-
             this.preferences = initialState.w.split(',').map(p => {
                 return {
                     weight: parseInt(p.slice(0, 1), 10),
@@ -67,9 +66,7 @@ export class ItineraryComponent implements OnInit {
                     && TEAMS.includes(pref.team);
             });
 
-            if (this.preferences.length > 0) {
-                this.computeItinerary();
-            } else {
+            if (this.preferences.length === 0) {
                 this.preferences = [{}];
             }
 
@@ -77,6 +74,10 @@ export class ItineraryComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.preferences.length > 0) {
+            this.computeItinerary();
+        }
+
         google.charts.load('current', {
             packages: ['geochart'],
             mapsApiKey: API_KEY,
@@ -130,7 +131,6 @@ export class ItineraryComponent implements OnInit {
                 }
                 value += this.reward(date, city);
                 path.push(city);
-
                 next.push({ path, value });
             }
             prev = next;
@@ -151,11 +151,9 @@ export class ItineraryComponent implements OnInit {
         bestPath.shift();
         this.games = this.dataService.games.filter(game => {
             const gameDate = new Date(game.date);
-            if (gameDate > END_DATE) {
-                return false;
-            }
             const indexedDate = gameDate.getDate() - START_DATE.getDate();
-            return bestPath[indexedDate] === game.city;
+            return indexedDate < bestPath.length
+                && bestPath[indexedDate] === game.city;
         });
 
         this.computeSummary(bestPath);
