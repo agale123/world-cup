@@ -5,6 +5,10 @@ threadsafe: yes
 
 handlers:
 
+- url: /favicon\.ico
+  static_files: dist/worldcup/favicon.ico
+  upload: dist/worldcup/favicon.ico
+
 - url: /(.*\.(js|map|css|png))$
   static_files: dist/worldcup/\1
   upload: dist/worldcup/(.*)
