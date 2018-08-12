@@ -5,11 +5,14 @@
             (click)="sidenav.toggle()">
             <mat-icon aria-label="Open menu">menu</mat-icon>
         </button>
-        <h1 [class.padding-left]="!useTabNavigation">
+        <h1 class="padding-left" *ngIf="!useTabNavigation">
             2019 World Cup: {{subpage | async}}
         </h1>
+        <h1 class="center" *ngIf="useTabNavigation">
+            2019 World Cup
+        </h1>
     </mat-toolbar>
-    <nav mat-tab-nav-bar
+    <nav mat-tab-nav-bar class="center"
         *ngIf="useTabNavigation">
         <ng-container *ngIf="activeLink | async; let active">
             <a mat-tab-link

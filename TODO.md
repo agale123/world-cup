@@ -1,15 +1,12 @@
 # TODO
 
 ## Productionization
-* Add favicon
 * Browser/mobile testing
     * Chrome
     * Firefox
     * Edge
     * Safari
     * Mobile
-* Set up and restrict maps API key
-* Create docker container
 * Deploy on GCP
 * Set up domain
 * Set up monitoring
