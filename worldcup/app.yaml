@@ -1,0 +1,30 @@
+# [START runtime]
+runtime: python27
+threadsafe: yes
+# [END runtime]
+
+handlers:
+
+- url: /(.*\.(js|map|css|png))$
+  static_files: dist/worldcup/\1
+  upload: dist/worldcup/(.*)
+
+- url: /(.*)
+  static_files: dist/worldcup/index.html
+  upload: dist/worldcup/index.html
+
+# Temporary setting to keep gcloud from uploading not required files for deployment
+skip_files:
+- ^node_modules$
+- ^app\.yaml
+- ^README\..*
+- \.gitignore
+- ^\.git$
+- ^grunt\.js
+- ^src$
+- ^e2e$
+- \.editorconfig
+- ^karma\.config\.js
+- ^package\.json
+- ^protractor\.conf\.js
+- ^tslint\.json
