@@ -66,12 +66,14 @@ export class ItineraryComponent implements OnInit {
                     && TEAMS.includes(pref.team);
             });
         }
+
+        if (this.preferences.length === 0) {
+            this.preferences = [{}];
+        }
     }
 
     ngOnInit() {
-        if (this.preferences.length === 0) {
-            this.preferences = [{}];
-        } else {
+        if (this.preferences.length > 0 && !!this.preferences[0].team) {
             this.computeItinerary();
         }
 
@@ -232,7 +234,10 @@ export class ItineraryComponent implements OnInit {
         }).map(val => `${val.team} (${val.count})`);
 
         if (this.chartsLoaded) {
-            this.drawMap();
+            // Wait for the #map element to be rendered.
+            setTimeout(() => {
+                this.drawMap();
+            });
         }
     }
 
