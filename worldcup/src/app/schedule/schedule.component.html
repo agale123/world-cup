@@ -2,6 +2,8 @@
     <!-- Table filtering panel -->
     <div class="expansion-panel">
         <mat-expansion-panel hideToggle="true"
+            disabled="true"
+            expanded="true"
             class="content-width">
             <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -45,6 +47,8 @@
     <!-- Prediction setting panel -->
     <div class="expansion-panel">
         <mat-expansion-panel hideToggle="true"
+            disabled="true"
+            expanded="true"
             class="content-width">
             <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -53,7 +57,9 @@
                         <mat-chip color="primary"
                             *ngFor="let chip of predictions | async; let i=index"
                             selected>
-                            {{chip.team}} ({{dataService.getGroup(chip.team)}}): {{chip.position}}
+                            <span>
+                                {{chip.team}} ({{dataService.getGroup(chip.team)}}): {{chip.position}}
+                            </span>
                             <button mat-icon-button
                                 (click)="removePrediction($event, i)">
                                 <mat-icon>close</mat-icon>

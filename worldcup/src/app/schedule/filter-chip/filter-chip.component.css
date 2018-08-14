@@ -2,6 +2,12 @@
     display: none;
 }
 
+mat-chip {
+    max-width: 275px;
+    display: flex;
+    justify-content: space-between;
+}
+
 mat-chip span:last-of-type {
     padding-right: 4px;
 }
@@ -11,4 +17,11 @@ mat-icon, .mat-icon-button {
     height: 16px;
     width: 16px;
     line-height: 16px !important;
+}
+
+.text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
 }

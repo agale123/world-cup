@@ -2,13 +2,15 @@
     margin-bottom: 16px;
 }
 
-mat-panel-title {
-    height: 32px;
-}
-
-mat-panel-title mat-icon {
+mat-panel-title > mat-icon {
     padding-right: 16px;
     padding-top: 4px;
+}
+
+mat-expansion-panel-header {
+    height: auto !important;
+    padding: 8px 24px !important;
+    color: black !important;
 }
 
 .mat-expansion-panel-header-title {

@@ -23,16 +23,9 @@ mat-sidenav {
     width: 256px;
 }
 
-mat-sidenav-container {
-    overflow-y: scroll;
-}
-
 mat-sidenav-content {
     height: 100%;
-}
-
-.mat-drawer-content {
-    overflow: visible;
+    overflow-y: scroll !important;
 }
 
 .mat-drawer-container {

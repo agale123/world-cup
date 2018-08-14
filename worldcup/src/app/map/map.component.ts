@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
 
         const options = {
             legend: 'none',
-            width: '814px',
+            width: '714px',
             colorAxis: { colors: ['#9FA8DA', '#3f51b5'] },
             enableRegionInteractivity: true,
         };

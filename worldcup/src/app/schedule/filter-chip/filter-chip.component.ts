@@ -20,11 +20,16 @@ export class FilterChipComponent implements OnInit {
 
     showChip: Observable<boolean>;
 
+    text: Observable<string>;
+
     ngOnInit() {
+        this.text = this.valueChanges.pipe(map(values => {
+            return `${this.label}: ${values.join(', ')}`;
+        }));
+
         this.showChip = this.valueChanges.pipe(
             map(values => {
                 return values && values.length > 0;
             }));
     }
-
 }
