@@ -2,9 +2,7 @@
 
 ## Productionization
 * Browser/mobile testing
-    * Chrome
     * Firefox
-    * Edge
     * Safari
     * Mobile
 * Deploy on GCP
