@@ -1,6 +1,8 @@
 # [START runtime]
 runtime: python27
 threadsafe: yes
+env: standard
+instance_class: F1
 # [END runtime]
 
 handlers:
