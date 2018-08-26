@@ -8,7 +8,7 @@
     * Safari
     * Mobile
 * Deploy on GCP
-* Set up domain
+* Set up domain https://cloud.google.com/appengine/docs/flexible/python/mapping-custom-domains
 * Set up monitoring
 * Move existing site off wordpress (before Oct 2)
 * Ensure domain renewal (before Oct 17)
