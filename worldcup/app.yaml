@@ -10,14 +10,17 @@ handlers:
 - url: /favicon\.ico
   static_files: dist/worldcup/favicon.ico
   upload: dist/worldcup/favicon.ico
+  secure: always
 
 - url: /(.*\.(js|map|css|png))$
   static_files: dist/worldcup/\1
   upload: dist/worldcup/(.*)
+  secure: always
 
 - url: /(.*)
   static_files: dist/worldcup/index.html
   upload: dist/worldcup/index.html
+  secure: always
 
 # Temporary setting to keep gcloud from uploading not required files for deployment
 skip_files:
