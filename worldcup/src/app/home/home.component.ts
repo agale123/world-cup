@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { AnalyticsService } from '../analytics.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+    constructor(private readonly analyticsService: AnalyticsService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.analyticsService.logPageView();
+    }
 
 }

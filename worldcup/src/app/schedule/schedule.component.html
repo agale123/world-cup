@@ -31,7 +31,8 @@
                     [formControl]="teams"
                     multiple>
                     <mat-option *ngFor="let team of teamList"
-                        [value]="team">{{team}}</mat-option>
+                        [value]="team"
+                        (click)="filterTeam(team)">{{team}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -39,7 +40,8 @@
                     [formControl]="cities"
                     multiple>
                     <mat-option *ngFor="let city of cityList"
-                        [value]="city">{{city}}</mat-option>
+                        [value]="city"
+                        (click)="filterCity(city)">{{city}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-expansion-panel>

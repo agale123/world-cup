@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CITIES, GROUPS, TEAMS, Team } from '../data';
 import { DataService } from '../data.service';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
+import { AnalyticsService } from '../analytics.service';
 
 export interface Prediction {
     team: string;
@@ -17,7 +18,7 @@ export interface Prediction {
     templateUrl: './schedule.component.html',
     styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
     readonly games;
 
     teams = new FormControl();
@@ -75,12 +76,13 @@ export class ScheduleComponent {
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
-        private readonly router: Router) {
+        private readonly router: Router,
+        private readonly analyticsService: AnalyticsService) {
         this.initializeState();
 
         const gamesWithPredictions = this.predictions.pipe(
             map(predictions => {
-                // Deep copy of array.
+               // Deep copy of array.
                 const games =
                     JSON.parse(JSON.stringify(this.dataService.games));
                 const elimWinners: { [key: number]: string[] } = {};
@@ -173,6 +175,28 @@ export class ScheduleComponent {
         });
     }
 
+    ngOnInit() {
+        this.analyticsService.logPageView();
+    }
+
+    filterTeam(team: string) {
+        if (this.teams.value.indexOf(team) === -1) {
+            return;
+        }
+        this.analyticsService.logEvent({
+            'dimension3': team,
+        });
+    }
+
+    filterCity(city: string) {
+        if (this.cities.value.indexOf(city) === -1) {
+            return;
+        }
+        this.analyticsService.logEvent({
+            'dimension4': city,
+        });
+    }
+
     updateSubmit() {
         if (!this.predictionPosition || !this.predictionTeam) {
             this.isSubmitDisabled = true;
@@ -198,6 +222,11 @@ export class ScheduleComponent {
             position: this.predictionPosition,
             group: this.dataService.getGroup(this.predictionTeam),
         });
+        this.analyticsService.logEvent({
+            'metric2': `${this.predictionPosition}`,
+            'dimension2': this.predictionTeam,
+        });
+
         this.predictions.next(predictions);
         this.predictionPosition = undefined;
         this.predictionTeam = undefined;

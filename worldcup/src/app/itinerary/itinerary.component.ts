@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CITIES, DISTANCES, Team, TEAMS } from '../data';
 import { DataService } from '../data.service';
+import { AnalyticsService } from '../analytics.service';
 import { API_KEY } from '../key';
 
-declare var google: any;
+declare let google: any;
 
 export interface Preference {
     team?: string;
@@ -53,7 +54,8 @@ export class ItineraryComponent implements OnInit {
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
-        private readonly router: Router) {
+        private readonly router: Router,
+        private readonly analyticsService: AnalyticsService) {
         const initialState = this.activatedRoute.snapshot.queryParams;
         if (initialState.w) {
             this.preferences = initialState.w.split(',').map(p => {
@@ -73,6 +75,8 @@ export class ItineraryComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.analyticsService.logPageView();
+
         if (this.preferences.length > 0 && !!this.preferences[0].team) {
             this.computeItinerary();
         }
@@ -111,6 +115,13 @@ export class ItineraryComponent implements OnInit {
     }
 
     computeItinerary() {
+        this.preferences.forEach(preference => {
+            this.analyticsService.logEvent({
+                'metric1': `${preference.weight}`,
+                'dimension1': preference.team,
+            });
+        });
+
         this.updateQueryParams();
         let prev = INITIAL;
         let next = [];
