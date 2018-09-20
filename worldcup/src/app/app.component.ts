@@ -18,7 +18,7 @@ export class AppComponent {
         { label: 'Itinerary Planner', link: '/itinerary' },
     ];
 
-    useTabNavigation = false;
+    useTabNavigation = true;
 
     readonly subpage: Observable<string>;
 
