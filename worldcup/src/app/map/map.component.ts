@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { STATS } from '../data';
 import { API_KEY } from '../key';
+import { MapLoaderService } from '../map-loader.service';
 
 declare var google: any;
 
@@ -11,20 +12,20 @@ declare var google: any;
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
 
     @ViewChild('map') mapElement: ElementRef;
 
     constructor(private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute) { }
-
-    ngOnInit() {
-        google.charts.load('current', {
-            packages: ['geochart'],
-            mapsApiKey: API_KEY,
-        });
-        google.charts.setOnLoadCallback(() => this.drawMap());
-    }
+        private readonly activatedRoute: ActivatedRoute, mapLoader: MapLoaderService) {
+            mapLoader.isLoaded.subscribe(() => {
+                google.charts.load('current', {
+                    packages: ['geochart'],
+                    mapsApiKey: API_KEY,
+                });
+                google.charts.setOnLoadCallback(() => this.drawMap());
+            });
+         }
 
     private drawMap() {
         const dataArray = [['Country', 'Appearances', 'Wins']];

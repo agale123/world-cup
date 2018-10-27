@@ -5,6 +5,7 @@ import { CITIES, DISTANCES, Team, TEAMS } from '../data';
 import { DataService } from '../data.service';
 import { AnalyticsService } from '../analytics.service';
 import { API_KEY } from '../key';
+import { MapLoaderService } from '../map-loader.service';
 
 declare let google: any;
 
@@ -55,7 +56,8 @@ export class ItineraryComponent implements OnInit {
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
-        private readonly analyticsService: AnalyticsService) {
+        private readonly analyticsService: AnalyticsService,
+        mapLoader: MapLoaderService) {
         const initialState = this.activatedRoute.snapshot.queryParams;
         if (initialState.w) {
             this.preferences = initialState.w.split(',').map(p => {
@@ -72,6 +74,19 @@ export class ItineraryComponent implements OnInit {
         if (this.preferences.length === 0) {
             this.preferences = [{}];
         }
+
+        mapLoader.isLoaded.subscribe(() => {
+            google.charts.load('current', {
+                packages: ['geochart'],
+                mapsApiKey: API_KEY,
+            });
+            google.charts.setOnLoadCallback(() => {
+                this.chartsLoaded = true;
+                if (this.games.length > 0) {
+                    this.drawMap();
+                }
+            });
+        });
     }
 
     ngOnInit() {
@@ -80,17 +95,6 @@ export class ItineraryComponent implements OnInit {
         if (this.preferences.length > 0 && !!this.preferences[0].team) {
             this.computeItinerary();
         }
-
-        google.charts.load('current', {
-            packages: ['geochart'],
-            mapsApiKey: API_KEY,
-        });
-        google.charts.setOnLoadCallback(() => {
-            this.chartsLoaded = true;
-            if (this.games.length > 0) {
-                this.drawMap();
-            }
-        });
     }
 
     addTeam() {
