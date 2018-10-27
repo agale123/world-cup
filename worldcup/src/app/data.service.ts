@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GAMES, GROUPS, GroupTeam, Team } from './data';
+import { GAMES, GROUPS, Team } from './data';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
