@@ -1,19 +1,10 @@
 <div class="app-container">
     <mat-toolbar color="primary">
-        <button mat-icon-button
-            *ngIf="!useTabNavigation"
-            (click)="sidenav.toggle()">
-            <mat-icon aria-label="Open menu">menu</mat-icon>
-        </button>
-        <h1 class="padding-left" *ngIf="!useTabNavigation">
-            2019 World Cup: {{subpage | async}}
-        </h1>
-        <h1 class="center" *ngIf="useTabNavigation">
+        <h1 class="center">
             2019 World Cup
         </h1>
     </mat-toolbar>
-    <nav mat-tab-nav-bar class="center"
-        *ngIf="useTabNavigation">
+    <nav mat-tab-nav-bar class="center">
         <ng-container *ngIf="activeLink | async; let active">
             <a mat-tab-link
                 *ngFor="let routeLink of routeLinks"
@@ -23,20 +14,7 @@
             </a>
         </ng-container>
     </nav>
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav
-            mode="over">
-            <mat-nav-list>
-                <a mat-list-item
-                    *ngFor="let routeLink of routeLinks"
-                    [routerLink]="routeLink.link"
-                    (click)="sidenav.toggle()">
-                    {{routeLink.label}}
-                </a>
-            </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+    <div class="main-body">
+        <router-outlet></router-outlet>
+    </div>
 </div>

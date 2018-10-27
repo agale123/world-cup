@@ -18,26 +18,11 @@ export class AppComponent {
         { label: 'Itinerary Planner', link: '/itinerary' },
     ];
 
-    useTabNavigation = true;
-
-    readonly subpage: Observable<string>;
-
-    constructor(private router: Router) {
+    constructor(router: Router) {
         this.activeLink = router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
                 map((event: NavigationEnd) => event.urlAfterRedirects),
             );
-
-        this.subpage = this.activeLink.pipe(
-            map(path => {
-                for (const entry of this.routeLinks) {
-                    if (path.startsWith(entry.link)) {
-                        return entry.label;
-                    }
-                }
-                return this.routeLinks[0].label;
-            })
-        );
     }
 }

@@ -2,10 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    MatButtonModule,
     MatListModule,
     MatToolbarModule,
-    MatSidenavModule,
     MatIconModule,
     MatTabsModule,
 } from '@angular/material';
@@ -21,10 +19,8 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        MatButtonModule,
         MatIconModule,
         MatListModule,
-        MatSidenavModule,
         MatTabsModule,
         MatToolbarModule,
     ],
