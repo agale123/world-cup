@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Deploy
 
-Run `ng build --prod` to get a compiled bundle. Then run `gcloud app deploy`.
+Install the Angular CLI with the command `npm install -g @angular/cli`. Run `ng build --prod` to get a compiled bundle. Then run `gcloud app deploy`.
 
 ## Further help
 

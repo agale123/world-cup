@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatListModule,
     MatToolbarModule,
-    MatIconModule,
     MatTabsModule,
 } from '@angular/material';
 
@@ -19,7 +18,6 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        MatIconModule,
         MatListModule,
         MatTabsModule,
         MatToolbarModule,
