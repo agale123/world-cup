@@ -1,3 +1,4 @@
+import { StatsResolver } from './../stats-resolver.service';
 import { MapComponent } from './../map/map.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
+        resolve: {stats: StatsResolver},
     }
 ];
 

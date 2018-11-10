@@ -55,7 +55,7 @@ export class ItineraryComponent implements OnInit {
 
     private chartsLoaded = new BehaviorSubject(false);
 
-    private distancesMap;
+    private readonly distancesMap;
 
     private componentsLoaded = new Subject<boolean>();
 
@@ -65,6 +65,9 @@ export class ItineraryComponent implements OnInit {
         private readonly analyticsService: AnalyticsService,
         private readonly changeDetector: ChangeDetectorRef,
         mapLoader: MapLoaderService) {
+        // Read in distances data.
+        this.distancesMap = this.activatedRoute.snapshot.data.distances;
+
         // Read initial state from route.
         const initialState = this.activatedRoute.snapshot.queryParams;
         if (initialState.w) {
@@ -83,15 +86,12 @@ export class ItineraryComponent implements OnInit {
             this.preferences = [{}];
         }
 
-        // Read in distances data.
+        // Compute itinerary once everything is loaded.
         combineLatest(
-            dataService.getDistances(),
             this.componentsLoaded,
             this.chartsLoaded).pipe(
-                filter(([_, componentsLoaded, chartsLoaded]) => !!componentsLoaded && !!chartsLoaded),
-                map(([distances, _, __]) => distances))
-            .subscribe(distances => {
-                this.distancesMap = distances;
+                filter(([componentsLoaded, chartsLoaded]) => !!componentsLoaded && !!chartsLoaded))
+            .subscribe(() => {
                 if (this.preferences.length > 0 && !!this.preferences[0].team) {
                     this.computeItinerary();
                 }

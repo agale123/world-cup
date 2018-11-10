@@ -1,10 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, map, switchMap } from 'rxjs/operators';
 
 import { API_KEY } from '../key';
 import { MapLoaderService } from '../map-loader.service';
-import { HttpClient } from '@angular/common/http';
 
 declare var google: any;
 
@@ -19,16 +17,14 @@ export class MapComponent {
 
     constructor(private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute,
-        mapLoader: MapLoaderService, http: HttpClient) {
+        mapLoader: MapLoaderService) {
         // TODO: Add last 5 teams
-        mapLoader.isLoaded.pipe(
-            switchMap(() => http.get('assets/stats.json')),
-            map((response) => response['data']),
-            first()).subscribe(data => {
+        mapLoader.isLoaded.subscribe(() => {
                 google.charts.load('current', {
                     packages: ['geochart'],
                     mapsApiKey: API_KEY,
                 });
+                const data = this.activatedRoute.snapshot.data.stats;
                 google.charts.setOnLoadCallback(() => this.drawMap(data));
             });
     }

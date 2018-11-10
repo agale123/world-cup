@@ -1,3 +1,4 @@
+import { DistancesResolver } from './../distances-resolver.service';
 import { TableModule } from './../table/table.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ const routes: Routes = [
     {
         path: '',
         component: ItineraryComponent,
+        resolve: {distances: DistancesResolver}
     }
 ];
 
