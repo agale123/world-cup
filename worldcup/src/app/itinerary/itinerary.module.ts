@@ -7,12 +7,16 @@ import { ItineraryComponent } from './itinerary.component';
 import { MatCardModule, MatIconModule, MatExpansionModule, MatSelectModule, MatDividerModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ScheduleResolver } from '../schedule-resolver.service';
 
 const routes: Routes = [
     {
         path: '',
         component: ItineraryComponent,
-        resolve: {distances: DistancesResolver}
+        resolve: {
+            distances: DistancesResolver,
+            schedule: ScheduleResolver,
+        }
     }
 ];
 

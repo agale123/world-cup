@@ -1,0 +1,704 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "city": "Paris",
+            "date": "2019-07-08T04:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 1
+            },
+            "away": {
+                "group": "A",
+                "index": 2
+            }
+        },
+        {
+            "id": 2,
+            "city": "Reims",
+            "date": "2019-07-08T22:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 3
+            },
+            "away": {
+                "group": "A",
+                "index": 4
+            }
+        },
+        {
+            "id": 3,
+            "city": "Rennes",
+            "date": "2019-07-09T04:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 1
+            },
+            "away": {
+                "group": "B",
+                "index": 2
+            }
+        },
+        {
+            "id": 4,
+            "city": "Le Havre",
+            "date": "2019-07-09T01:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 3
+            },
+            "away": {
+                "group": "B",
+                "index": 4
+            }
+        },
+        {
+            "id": 5,
+            "city": "Valenciennes",
+            "date": "2019-07-09T20:00:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 1
+            },
+            "away": {
+                "group": "C",
+                "index": 2
+            }
+        },
+        {
+            "id": 6,
+            "city": "Grenoble",
+            "date": "2019-07-09T22:30:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 3
+            },
+            "away": {
+                "group": "C",
+                "index": 4
+            }
+        },
+        {
+            "id": 7,
+            "city": "Nice",
+            "date": "2019-07-10T01:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 1
+            },
+            "away": {
+                "group": "D",
+                "index": 2
+            }
+        },
+        {
+            "id": 8,
+            "city": "Paris",
+            "date": "2019-07-11T01:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 3
+            },
+            "away": {
+                "group": "D",
+                "index": 4
+            }
+        },
+        {
+            "id": 9,
+            "city": "Montpellier",
+            "date": "2019-07-11T04:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 1
+            },
+            "away": {
+                "group": "E",
+                "index": 2
+            }
+        },
+        {
+            "id": 10,
+            "city": "Le Havre",
+            "date": "2019-07-11T22:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 3
+            },
+            "away": {
+                "group": "E",
+                "index": 4
+            }
+        },
+        {
+            "id": 11,
+            "city": "Reims",
+            "date": "2019-07-12T04:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 1
+            },
+            "away": {
+                "group": "F",
+                "index": 2
+            }
+        },
+        {
+            "id": 12,
+            "city": "Rennes",
+            "date": "2019-07-12T01:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 3
+            },
+            "away": {
+                "group": "F",
+                "index": 4
+            }
+        },
+        {
+            "id": 13,
+            "city": "Nice",
+            "date": "2019-07-13T04:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 1
+            },
+            "away": {
+                "group": "A",
+                "index": 3
+            }
+        },
+        {
+            "id": 14,
+            "city": "Grenoble",
+            "date": "2019-07-12T22:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 4
+            },
+            "away": {
+                "group": "A",
+                "index": 2
+            }
+        },
+        {
+            "id": 15,
+            "city": "Valenciennes",
+            "date": "2019-07-13T01:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 1
+            },
+            "away": {
+                "group": "B",
+                "index": 3
+            }
+        },
+        {
+            "id": 16,
+            "city": "Paris",
+            "date": "2019-07-14T04:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 4
+            },
+            "away": {
+                "group": "B",
+                "index": 2
+            }
+        },
+        {
+            "id": 17,
+            "city": "Montpellier",
+            "date": "2019-07-14T01:00:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 1
+            },
+            "away": {
+                "group": "C",
+                "index": 3
+            }
+        },
+        {
+            "id": 18,
+            "city": "Reims",
+            "date": "2019-07-15T04:00:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 2
+            },
+            "away": {
+                "group": "C",
+                "index": 4
+            }
+        },
+        {
+            "id": 19,
+            "city": "Le Havre",
+            "date": "2019-07-15T01:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 1
+            },
+            "away": {
+                "group": "D",
+                "index": 3
+            }
+        },
+        {
+            "id": 20,
+            "city": "Rennes",
+            "date": "2019-07-14T22:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 4
+            },
+            "away": {
+                "group": "D",
+                "index": 2
+            }
+        },
+        {
+            "id": 21,
+            "city": "Grenoble",
+            "date": "2019-07-16T04:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 1
+            },
+            "away": {
+                "group": "E",
+                "index": 3
+            }
+        },
+        {
+            "id": 22,
+            "city": "Valenciennes",
+            "date": "2019-07-16T01:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 4
+            },
+            "away": {
+                "group": "E",
+                "index": 2
+            }
+        },
+        {
+            "id": 23,
+            "city": "Paris",
+            "date": "2019-07-16T22:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 1
+            },
+            "away": {
+                "group": "F",
+                "index": 3
+            }
+        },
+        {
+            "id": 24,
+            "city": "Nice",
+            "date": "2019-07-17T01:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 4
+            },
+            "away": {
+                "group": "F",
+                "index": 2
+            }
+        },
+        {
+            "id": 25,
+            "city": "Rennes",
+            "date": "2019-07-18T04:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 4
+            },
+            "away": {
+                "group": "A",
+                "index": 1
+            }
+        },
+        {
+            "id": 26,
+            "city": "Reims",
+            "date": "2019-07-18T04:00:00.000Z",
+            "home": {
+                "group": "A",
+                "index": 2
+            },
+            "away": {
+                "group": "A",
+                "index": 3
+            }
+        },
+        {
+            "id": 27,
+            "city": "Montpellier",
+            "date": "2019-07-18T01:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 4
+            },
+            "away": {
+                "group": "B",
+                "index": 1
+            }
+        },
+        {
+            "id": 28,
+            "city": "Le Havre",
+            "date": "2019-07-18T01:00:00.000Z",
+            "home": {
+                "group": "B",
+                "index": 2
+            },
+            "away": {
+                "group": "B",
+                "index": 3
+            }
+        },
+        {
+            "id": 29,
+            "city": "Grenoble",
+            "date": "2019-07-19T04:00:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 4
+            },
+            "away": {
+                "group": "C",
+                "index": 1
+            }
+        },
+        {
+            "id": 30,
+            "city": "Valenciennes",
+            "date": "2019-07-19T04:00:00.000Z",
+            "home": {
+                "group": "C",
+                "index": 2
+            },
+            "away": {
+                "group": "C",
+                "index": 3
+            }
+        },
+        {
+            "id": 31,
+            "city": "Nice",
+            "date": "2019-07-20T04:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 4
+            },
+            "away": {
+                "group": "D",
+                "index": 1
+            }
+        },
+        {
+            "id": 32,
+            "city": "Paris",
+            "date": "2019-07-20T04:00:00.000Z",
+            "home": {
+                "group": "D",
+                "index": 2
+            },
+            "away": {
+                "group": "D",
+                "index": 3
+            }
+        },
+        {
+            "id": 33,
+            "city": "Reims",
+            "date": "2019-07-21T01:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 4
+            },
+            "away": {
+                "group": "E",
+                "index": 1
+            }
+        },
+        {
+            "id": 34,
+            "city": "Montpellier",
+            "date": "2019-07-21T01:00:00.000Z",
+            "home": {
+                "group": "E",
+                "index": 2
+            },
+            "away": {
+                "group": "E",
+                "index": 3
+            }
+        },
+        {
+            "id": 35,
+            "city": "Le Havre",
+            "date": "2019-07-21T04:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 4
+            },
+            "away": {
+                "group": "F",
+                "index": 1
+            }
+        },
+        {
+            "id": 36,
+            "city": "Rennes",
+            "date": "2019-07-21T04:00:00.000Z",
+            "home": {
+                "group": "F",
+                "index": 2
+            },
+            "away": {
+                "group": "F",
+                "index": 3
+            }
+        },
+        {
+            "id": 37,
+            "city": "Nice",
+            "date": "2019-07-23T01:30:00.000Z",
+            "home": {
+                "group": [
+                    "A"
+                ],
+                "seed": 2
+            },
+            "away": {
+                "group": [
+                    "C"
+                ],
+                "seed": 2
+            }
+        },
+        {
+            "id": 38,
+            "city": "Grenoble",
+            "date": "2019-07-22T22:00:00.000Z",
+            "home": {
+                "group": [
+                    "B"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "A",
+                    "C",
+                    "D"
+                ],
+                "seed": 3
+            }
+        },
+        {
+            "id": 39,
+            "city": "Valenciennes",
+            "date": "2019-07-24T00:30:00.000Z",
+            "home": {
+                "group": [
+                    "D"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "B",
+                    "E",
+                    "F"
+                ],
+                "seed": 3
+            }
+        },
+        {
+            "id": 40,
+            "city": "Le Havre",
+            "date": "2019-07-24T04:00:00.000Z",
+            "home": {
+                "group": [
+                    "A"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "C",
+                    "D",
+                    "E"
+                ],
+                "seed": 3
+            }
+        },
+        {
+            "id": 41,
+            "city": "Reims",
+            "date": "2019-07-25T01:00:00.000Z",
+            "home": {
+                "group": [
+                    "B"
+                ],
+                "seed": 2
+            },
+            "away": {
+                "group": [
+                    "F"
+                ],
+                "seed": 2
+            }
+        },
+        {
+            "id": 42,
+            "city": "Paris",
+            "date": "2019-07-25T04:00:00.000Z",
+            "home": {
+                "group": [
+                    "F"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "E"
+                ],
+                "seed": 2
+            }
+        },
+        {
+            "id": 43,
+            "city": "Montpellier",
+            "date": "2019-07-26T01:00:00.000Z",
+            "home": {
+                "group": [
+                    "C"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "A",
+                    "B",
+                    "F"
+                ],
+                "seed": 3
+            }
+        },
+        {
+            "id": 44,
+            "city": "Rennes",
+            "date": "2019-07-26T04:00:00.000Z",
+            "home": {
+                "group": [
+                    "E"
+                ],
+                "seed": 1
+            },
+            "away": {
+                "group": [
+                    "D"
+                ],
+                "seed": 2
+            }
+        },
+        {
+            "id": 45,
+            "city": "Le Havre",
+            "date": "2019-07-28T04:00:00.000Z",
+            "home": {
+                "winner": 37
+            },
+            "away": {
+                "winner": 39
+            }
+        },
+        {
+            "id": 46,
+            "city": "Paris",
+            "date": "2019-07-29T04:00:00.000Z",
+            "home": {
+                "winner": 40
+            },
+            "away": {
+                "winner": 41
+            }
+        },
+        {
+            "id": 47,
+            "city": "Valenciennes",
+            "date": "2019-07-29T22:00:00.000Z",
+            "home": {
+                "winner": 43
+            },
+            "away": {
+                "winner": 44
+            }
+        },
+        {
+            "id": 48,
+            "city": "Rennes",
+            "date": "2019-07-30T01:30:00.000Z",
+            "home": {
+                "winner": 38
+            },
+            "away": {
+                "winner": 42
+            }
+        },
+        {
+            "id": 49,
+            "city": "Lyon",
+            "date": "2019-08-03T04:00:00.000Z",
+            "home": {
+                "winner": 45
+            },
+            "away": {
+                "winner": 46
+            }
+        },
+        {
+            "id": 50,
+            "city": "Lyon",
+            "date": "2019-08-04T04:00:00.000Z",
+            "home": {
+                "winner": 47
+            },
+            "away": {
+                "winner": 48
+            }
+        },
+        {
+            "id": 51,
+            "city": "Nice",
+            "date": "2019-08-07T00:00:00.000Z",
+            "home": {
+                "loser": 49
+            },
+            "away": {
+                "loser": 50
+            }
+        },
+        {
+            "id": 52,
+            "city": "Lyon",
+            "date": "2019-08-08T00:00:00.000Z",
+            "home": {
+                "winner": 49
+            },
+            "away": {
+                "winner": 50
+            }
+        }
+    ]
+}

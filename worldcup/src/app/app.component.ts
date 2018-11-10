@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, ResolveEnd } from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
@@ -21,8 +21,8 @@ export class AppComponent {
     constructor(router: Router) {
         this.activeLink = router.events
             .pipe(
-                filter(event => event instanceof NavigationEnd),
-                map((event: NavigationEnd) => event.urlAfterRedirects),
+                filter(event => event instanceof ResolveEnd),
+                map((event: ResolveEnd) =>  event.urlAfterRedirects),
             );
     }
 }

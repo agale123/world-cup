@@ -54,10 +54,10 @@ export class ItineraryComponent implements OnInit {
     distanceTravelled = 0;
 
     private chartsLoaded = new BehaviorSubject(false);
+    private componentsLoaded = new Subject<boolean>();
 
     private readonly distancesMap;
-
-    private componentsLoaded = new Subject<boolean>();
+    private readonly schedule;
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
@@ -65,8 +65,9 @@ export class ItineraryComponent implements OnInit {
         private readonly analyticsService: AnalyticsService,
         private readonly changeDetector: ChangeDetectorRef,
         mapLoader: MapLoaderService) {
-        // Read in distances data.
+        // Read in data from route.
         this.distancesMap = this.activatedRoute.snapshot.data.distances;
+        this.schedule = this.activatedRoute.snapshot.data.schedule;
 
         // Read initial state from route.
         const initialState = this.activatedRoute.snapshot.queryParams;
@@ -183,7 +184,7 @@ export class ItineraryComponent implements OnInit {
         const bestPath = prev[0].path;
         // Remove the empty value from day 0.
         bestPath.shift();
-        this.games = this.dataService.games.filter(game => {
+        this.games = this.schedule.filter(game => {
             const gameDate = new Date(game.date);
             const indexedDate = gameDate.getDate() - START_DATE.getDate();
             return indexedDate < bestPath.length

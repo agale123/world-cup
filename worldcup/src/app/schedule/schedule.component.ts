@@ -84,7 +84,7 @@ export class ScheduleComponent implements OnInit {
             map(predictions => {
                // Deep copy of array.
                 const games =
-                    JSON.parse(JSON.stringify(this.dataService.games));
+                    JSON.parse(JSON.stringify(this.activatedRoute.snapshot.data.schedule));
                 const elimWinners: { [key: number]: string[] } = {};
                 for (const game of games) {
                     const first =

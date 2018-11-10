@@ -1,33 +1,13 @@
-import { shareReplay, map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GAMES, GROUPS, Team } from './data';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-    readonly games = [];
-
     readonly gamesPerDay = new Map<string, string[]>();
 
-    private readonly distances;
 
-    constructor(http: HttpClient) {
-        this.distances = http.get('assets/distances.json').pipe(
-            map(response =>
-                new Map(response['data']) as Map<string, number>
-            ),
-            shareReplay(1),
-        );
-
+    constructor() {
         GAMES.forEach(game => {
-            this.games.push({
-                id: game.id,
-                home: game.home,
-                away: game.away,
-                date: game.date.toLocaleString('en-US'),
-                city: game.city,
-            });
-
             const key = `${game.date.toDateString()}${game.city}`;
             if (!this.gamesPerDay.has(key)) {
                 this.gamesPerDay.set(key, []);
@@ -36,10 +16,6 @@ export class DataService {
             current.push(this.formatTeam(game.home));
             current.push(this.formatTeam(game.away));
         });
-    }
-
-    getDistances() {
-        return this.distances;
     }
 
     formatTeam(team: Team) {

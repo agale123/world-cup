@@ -1,3 +1,4 @@
+import { ScheduleResolver } from './../schedule-resolver.service';
 import { TableModule } from './../table/table.module';
 import { FilterChipComponent } from './filter-chip/filter-chip.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +12,7 @@ const routes: Routes = [
     {
         path: '',
         component: ScheduleComponent,
+        resolve: {schedule: ScheduleResolver},
     }
 ];
 
