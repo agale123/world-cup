@@ -58,6 +58,7 @@ export class ItineraryComponent implements OnInit {
 
     private readonly distancesMap;
     private readonly schedule;
+    private readonly gamesPerDay;
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
@@ -68,6 +69,7 @@ export class ItineraryComponent implements OnInit {
         // Read in data from route.
         this.distancesMap = this.activatedRoute.snapshot.data.distances;
         this.schedule = this.activatedRoute.snapshot.data.schedule;
+        this.gamesPerDay = dataService.getGamesPerDayMap(this.schedule);
 
         // Read initial state from route.
         const initialState = this.activatedRoute.snapshot.queryParams;
@@ -284,7 +286,7 @@ export class ItineraryComponent implements OnInit {
             return 0;
         }
 
-        const games = this.dataService.getGames(date, city);
+        const games = this.gamesPerDay.get(`${date.toDateString()}${city}`);
         if (!games) {
             return 0;
         }

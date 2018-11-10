@@ -1,21 +1,9 @@
 import { Injectable } from '@angular/core';
-import { GAMES, GROUPS, Team } from './data';
+import { GROUPS, Team } from './data';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-    readonly gamesPerDay = new Map<string, string[]>();
-
-
     constructor() {
-        GAMES.forEach(game => {
-            const key = `${game.date.toDateString()}${game.city}`;
-            if (!this.gamesPerDay.has(key)) {
-                this.gamesPerDay.set(key, []);
-            }
-            const current = this.gamesPerDay.get(key);
-            current.push(this.formatTeam(game.home));
-            current.push(this.formatTeam(game.away));
-        });
     }
 
     formatTeam(team: Team) {
@@ -51,8 +39,18 @@ export class DataService {
         throw new Error('Team not found');
     }
 
-    getGames(date: Date, city: string) {
-        const key = `${date.toDateString()}${city}`;
-        return this.gamesPerDay.get(key);
+    getGamesPerDayMap(schedule) {
+        const gamesPerDay = new Map<string, string[]>();
+        schedule.forEach(game => {
+            const date = new Date(game.date);
+            const key = `${date.toDateString()}${game.city}`;
+            if (!gamesPerDay.has(key)) {
+                gamesPerDay.set(key, []);
+            }
+            const current = gamesPerDay.get(key);
+            current.push(this.formatTeam(game.home));
+            current.push(this.formatTeam(game.away));
+        });
+        return gamesPerDay;
     }
 }
