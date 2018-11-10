@@ -1,3 +1,5 @@
+import { shareReplay, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GAMES, GROUPS, Team } from './data';
 
@@ -7,7 +9,16 @@ export class DataService {
 
     readonly gamesPerDay = new Map<string, string[]>();
 
-    constructor() {
+    private readonly distances;
+
+    constructor(http: HttpClient) {
+        this.distances = http.get('assets/distances.json').pipe(
+            map(response =>
+                new Map(response['data']) as Map<string, number>
+            ),
+            shareReplay(1),
+        );
+
         GAMES.forEach(game => {
             this.games.push({
                 id: game.id,
@@ -25,6 +36,10 @@ export class DataService {
             current.push(this.formatTeam(game.home));
             current.push(this.formatTeam(game.away));
         });
+    }
+
+    getDistances() {
+        return this.distances;
     }
 
     formatTeam(team: Team) {

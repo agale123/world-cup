@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { filter, map } from 'rxjs/operators';
+import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CITIES, DISTANCES, Team, TEAMS } from '../data';
+import { CITIES, TEAMS } from '../data';
 import { DataService } from '../data.service';
 import { AnalyticsService } from '../analytics.service';
 import { API_KEY } from '../key';
@@ -51,13 +53,19 @@ export class ItineraryComponent implements OnInit {
     cities = [];
     distanceTravelled = 0;
 
-    private chartsLoaded = false;
+    private chartsLoaded = new BehaviorSubject(false);
+
+    private distancesMap;
+
+    private componentsLoaded = new Subject<boolean>();
 
     constructor(private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
         private readonly analyticsService: AnalyticsService,
+        private readonly changeDetector: ChangeDetectorRef,
         mapLoader: MapLoaderService) {
+        // Read initial state from route.
         const initialState = this.activatedRoute.snapshot.queryParams;
         if (initialState.w) {
             this.preferences = initialState.w.split(',').map(p => {
@@ -75,13 +83,28 @@ export class ItineraryComponent implements OnInit {
             this.preferences = [{}];
         }
 
+        // Read in distances data.
+        combineLatest(
+            dataService.getDistances(),
+            this.componentsLoaded,
+            this.chartsLoaded).pipe(
+                filter(([_, componentsLoaded, chartsLoaded]) => !!componentsLoaded && !!chartsLoaded),
+                map(([distances, _, __]) => distances))
+            .subscribe(distances => {
+                this.distancesMap = distances;
+                if (this.preferences.length > 0 && !!this.preferences[0].team) {
+                    this.computeItinerary();
+                }
+            });
+
+        // Start map loading.
         mapLoader.isLoaded.subscribe(() => {
             google.charts.load('current', {
                 packages: ['geochart'],
                 mapsApiKey: API_KEY,
             });
             google.charts.setOnLoadCallback(() => {
-                this.chartsLoaded = true;
+                this.chartsLoaded.next(true);
                 if (this.games.length > 0) {
                     this.drawMap();
                 }
@@ -91,10 +114,7 @@ export class ItineraryComponent implements OnInit {
 
     ngOnInit() {
         this.analyticsService.logPageView();
-
-        if (this.preferences.length > 0 && !!this.preferences[0].team) {
-            this.computeItinerary();
-        }
+        this.componentsLoaded.next(true);
     }
 
     addTeam() {
@@ -169,11 +189,15 @@ export class ItineraryComponent implements OnInit {
             return indexedDate < bestPath.length
                 && bestPath[indexedDate] === game.city;
         });
+        this.changeDetector.detectChanges();
 
         this.computeSummary(bestPath);
     }
 
     isSubmitDisabled() {
+        if (!this.distancesMap) {
+            return true;
+        }
         const teams = new Set<string>();
         for (const pref of this.preferences) {
             if (!pref.team || !pref.weight || pref.weight < 1
@@ -248,11 +272,8 @@ export class ItineraryComponent implements OnInit {
             return 0;
         }).map(val => `${val.team} (${val.count})`);
 
-        if (this.chartsLoaded) {
-            // Wait for the #map element to be rendered.
-            setTimeout(() => {
-                this.drawMap();
-            });
+        if (this.chartsLoaded.getValue()) {
+            this.drawMap();
         }
     }
 
@@ -293,6 +314,6 @@ export class ItineraryComponent implements OnInit {
             // Null represents any city, so distance is 0.
             return 0;
         }
-        return DISTANCES.get([a, b].sort().join());
+        return this.distancesMap.get([a, b].sort().join());
     }
 }

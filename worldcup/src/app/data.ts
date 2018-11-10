@@ -444,71 +444,8 @@ export const GROUPS = {
     'F': ['F1', 'F2', 'F3', 'F4'],
 };
 
-export const STATS = {
-    'Canada': {'appearances': 7, 'wins': 0},
-    'China': {'appearances': 7, 'wins': 0},
-    'New Zealand': {'appearances': 5, 'wins': 0},
-    'Germany': {'appearances': 8, 'wins': 2},
-    'Norway': {'appearances': 8, 'wins': 1},
-    'Thailand': {'appearances': 2, 'wins': 0},
-    'Japan': {'appearances': 8, 'wins': 1},
-    'United States': {'appearances': 8, 'wins': 3},
-    'Australia': {'appearances': 7, 'wins': 0},
-    'Sweden': {'appearances': 8, 'wins': 0},
-    'Brazil': {'appearances': 8, 'wins': 0},
-    'South Korea': {'appearances': 3, 'wins': 0},
-    'Spain': {'appearances': 2, 'wins': 0},
-    'France': {'appearances': 4, 'wins': 0},
-    'England': {'appearances': 5, 'wins': 0},
-    'Jamaica': {'appearances': 1, 'wins': 0},
-    'Chile': {'appearances': 1, 'wins': 0},
-    'Italy': {'appearances': 3, 'wins': 0},
-    'Scotland': {'appearances': 1, 'wins': 0},
-    // TODO: Add last 5 teams.
-};
-
 export const TEAMS = [].concat(
     ...Object.keys(GROUPS).map((value: Group) => GROUPS[value])).sort();
 
 export const CITIES =
     Array.from(new Set(GAMES.map(game => game.city)).values()).sort();
-
-/** Distances between pairs of cities (by road) in miles */
-export const DISTANCES = new Map([
-    [['Lyon', 'Paris'].sort().join(), 290],
-    [['Lyon', 'Reims'].sort().join(), 304],
-    [['Lyon', 'Rennes'].sort().join(), 462],
-    [['Lyon', 'Le Havre'].sort().join(), 408],
-    [['Lyon', 'Valenciennes'].sort().join(), 411],
-    [['Lyon', 'Grenoble'].sort().join(), 70],
-    [['Lyon', 'Nice'].sort().join(), 293],
-    [['Lyon', 'Montpellier'].sort().join(), 189],
-    [['Paris', 'Reims'].sort().join(), 90],
-    [['Paris', 'Rennes'].sort().join(), 220],
-    [['Paris', 'Le Havre'].sort().join(), 122],
-    [['Paris', 'Valenciennes'].sort().join(), 131],
-    [['Paris', 'Grenoble'].sort().join(), 357],
-    [['Paris', 'Nice'].sort().join(), 579],
-    [['Paris', 'Montpellier'].sort().join(), 465],
-    [['Reims', 'Rennes'].sort().join(), 303],
-    [['Reims', 'Le Havre'].sort().join(), 218],
-    [['Reims', 'Valenciennes'].sort().join(), 109],
-    [['Reims', 'Grenoble'].sort().join(), 372],
-    [['Reims', 'Nice'].sort().join(), 594],
-    [['Reims', 'Montpellier'].sort().join(), 490],
-    [['Rennes', 'Le Havre'].sort().join(), 173],
-    [['Rennes', 'Valenciennes'].sort().join(), 342],
-    [['Rennes', 'Grenoble'].sort().join(), 526],
-    [['Rennes', 'Nice'].sort().join(), 748],
-    [['Rennes', 'Montpellier'].sort().join(), 564],
-    [['Le Havre', 'Valenciennes'].sort().join(), 189],
-    [['Le Havre', 'Grenoble'].sort().join(), 476],
-    [['Le Havre', 'Nice'].sort().join(), 697],
-    [['Le Havre', 'Montpellier'].sort().join(), 577],
-    [['Valenciennes', 'Grenoble'].sort().join(), 479],
-    [['Valenciennes', 'Nice'].sort().join(), 701],
-    [['Valenciennes', 'Montpellier'].sort().join(), 597],
-    [['Grenoble', 'Nice'].sort().join(), 238],
-    [['Grenoble', 'Montpellier'].sort().join(), 184],
-    [['Nice', 'Montpellier'].sort().join(), 204],
-]);
