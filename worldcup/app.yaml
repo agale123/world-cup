@@ -17,6 +17,16 @@ handlers:
   static_files: dist/worldcup/assets/stats.json
   upload: dist/worldcup/assets/stats.json
 
+- url: /assets/distances\.json
+  secure: always
+  static_files: dist/worldcup/assets/distances.json
+  upload: dist/worldcup/assets/distances.json
+
+- url: /assets/schedule\.json
+  secure: always
+  static_files: dist/worldcup/assets/schedule.json
+  upload: dist/worldcup/assets/schedule.json
+
 - url: /(.*\.(js|map|css|png))$
   static_files: dist/worldcup/\1
   upload: dist/worldcup/(.*)
