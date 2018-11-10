@@ -11,6 +11,11 @@ handlers:
   static_files: dist/worldcup/favicon.ico
   upload: dist/worldcup/favicon.ico
   secure: always
+  
+- url: /assets/stats\.json
+  secure: always
+  static_files: dist/worldcup/assets/stats.json
+  upload: dist/worldcup/assets/stats.json
 
 - url: /(.*\.(js|map|css|png))$
   static_files: dist/worldcup/\1
