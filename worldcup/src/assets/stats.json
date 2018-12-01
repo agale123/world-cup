@@ -21,6 +21,11 @@
             2
         ],
         [
+            "Netherlands",
+            2,
+            0
+        ],
+        [
             "Norway",
             8,
             1
@@ -43,6 +48,11 @@
         [
             "Australia",
             7,
+            0
+        ],
+        [
+            "Argentina",
+            3,
             0
         ],
         [
@@ -91,7 +101,17 @@
             0
         ],
         [
-            "Scotland",
+            "Cameroon",
+            2,
+            0
+        ],
+        [
+            "Nigeria",
+            8,
+            0
+        ],
+        [
+            "South Africa",
             1,
             0
         ]
