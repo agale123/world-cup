@@ -9,7 +9,7 @@
             <a mat-tab-link
                 *ngFor="let routeLink of routeLinks"
                 [routerLink]="routeLink.link"
-                [active]="active === routeLink.link">
+                [active]="active.indexOf(routeLink.link) >= 0">
                 {{routeLink.label}}
             </a>
         </ng-container>
