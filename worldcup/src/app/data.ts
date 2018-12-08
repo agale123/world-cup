@@ -39,14 +39,13 @@ export interface Game {
     away: Team;
 }
 
-// TODO: Update teams after draw.
 export const GROUPS = {
-    'A': ['France', 'A2', 'A3', 'A4'],
-    'B': ['B1', 'B2', 'B3', 'B4'],
-    'C': ['C1', 'C2', 'C3', 'C4'],
-    'D': ['D1', 'D2', 'D3', 'D4'],
-    'E': ['E1', 'E2', 'E3', 'E4'],
-    'F': ['F1', 'F2', 'F3', 'F4'],
+    'A': ['France', 'South Korea', 'Norway', 'Nigeria'],
+    'B': ['Germany', 'China', 'Spain', 'South Africa'],
+    'C': ['Australia', 'Italy', 'Brazil', 'Jamaica'],
+    'D': ['England', 'Scotland', 'Argentina', 'Japan'],
+    'E': ['Canada', 'Cameroon', 'New Zealand', 'Netherlands'],
+    'F': ['United States', 'Thailand', 'Chile', 'Sweden'],
 };
 
 export const TEAMS = [].concat(
