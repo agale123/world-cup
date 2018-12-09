@@ -20,7 +20,7 @@ export class ScheduleResolver implements Resolve<Observable<Object>> {
                         id: game.id,
                         home: game.home,
                         away: game.away,
-                        date: new Date(game.date).toLocaleString('en-US'),
+                        date: game.date,
                         city: game.city,
                     };
                 });

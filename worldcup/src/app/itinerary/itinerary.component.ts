@@ -29,8 +29,8 @@ const INITIAL = [
     { path: [null], value: 0 },
 ];
 
-const START_DATE = new Date(2019, 6, 7);
-const END_DATE = new Date(2019, 6, 20);
+const START_DATE = new Date('June 7, 2019');
+const END_DATE = new Date('June 20, 2019');
 
 @Component({
     selector: 'app-itinerary',
@@ -187,7 +187,7 @@ export class ItineraryComponent implements OnInit {
         // Remove the empty value from day 0.
         bestPath.shift();
         this.games = this.schedule.filter(game => {
-            const gameDate = new Date(game.date);
+            const gameDate = new Date(`${game.date.split(',')[0]}, 2019`);
             const indexedDate = gameDate.getDate() - START_DATE.getDate();
             return indexedDate < bestPath.length
                 && bestPath[indexedDate] === game.city;
@@ -286,7 +286,9 @@ export class ItineraryComponent implements OnInit {
             return 0;
         }
 
-        const games = this.gamesPerDay.get(`${date.toDateString()}${city}`);
+        const month = date.getMonth() === 5 ? 'June' : 'July';
+        const dateKey = `${month} ${date.getDate()}`;
+        const games = this.gamesPerDay.get(`${dateKey}${city}`);
         if (!games) {
             return 0;
         }

@@ -42,8 +42,8 @@ export class DataService {
     getGamesPerDayMap(schedule) {
         const gamesPerDay = new Map<string, string[]>();
         schedule.forEach(game => {
-            const date = new Date(game.date);
-            const key = `${date.toDateString()}${game.city}`;
+            const date = game.date.split(',')[0];
+            const key = `${date}${game.city}`;
             if (!gamesPerDay.has(key)) {
                 gamesPerDay.set(key, []);
             }

@@ -34,7 +34,7 @@ export type Team = GroupTeam | InitialEliminationTeam | EliminationTeam | Consol
 export interface Game {
     id: number;
     city: City;
-    date: Date;
+    date: string;
     home: Team;
     away: Team;
 }
